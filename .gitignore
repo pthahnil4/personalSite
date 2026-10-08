@@ -1,0 +1,19 @@
+# Qoder Sites 本地绑定文件
+# 内含云端 projectId / siteId / releaseId 与一份首页快照，属于本机私有状态。
+# 换机器或重新 clone 后不需要它：在站点目录里发起会话，
+# 让 Sites 复用 projectId 01a11083-d22e-76e5-9d13-6794f983b530 重新绑定即可。
+*.qoder.site
+
+# 动效自检产物：每次跑 check_motion.py 都会重写，体积 4.9MB
+motion-shots/
+motion-check.json
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 编辑器与系统杂物
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

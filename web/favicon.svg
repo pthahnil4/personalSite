@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="沈沉思个人站">
+  <rect width="64" height="64" rx="14" fill="#060b1b"/>
+  <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="13.5" fill="none" stroke="#b4ff3d" stroke-opacity="0.35" stroke-width="1.5"/>
+  <circle cx="32" cy="32" r="15" fill="none" stroke="#b4ff3d" stroke-width="5"/>
+  <circle cx="32" cy="32" r="3.6" fill="#b4ff3d"/>
+</svg>

@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>一条 HTTP/2 长连接，卡了我三天 · 工作 · 沈沉思个人站</title>
+    <meta
+      name="description"
+      content="K 线拉取时断时续，报错信息是空的。问题不在策略里，在 SDK 怎么复用连接、超时没设，以及「异常消息为空」到底意味着什么。"
+    />
+    <meta name="theme-color" content="#060B1B" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="./favicon.ico" />
+    <link rel="apple-touch-icon" href="./favicon.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="reading-bar" aria-hidden="true"></div>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="site-header" id="top">
+      <div class="shell header-inner">
+        <a class="wordmark" href="./index.html" aria-label="返回个人站首页">
+          <span class="wordmark-mark" aria-hidden="true"></span>
+          <span class="wordmark-text">沈沉思</span>
+        </a>
+
+        <nav class="primary-nav" id="primary-nav" aria-label="主导航">
+          <a href="./index.html#panel">近况</a>
+          <a href="./index.html#shelf">板块</a>
+          <a href="./notes.html" class="is-current">记录</a>
+          <a href="./logs.html">日志</a>
+          <a href="./shares.html">分享</a>
+          <a href="./about.html">关于</a>
+        </nav>
+
+        <div class="header-actions">
+          <a class="btn btn-accent btn-sm" href="./contact.html">写信给我</a>
+          <button
+            class="nav-toggle"
+            type="button"
+            id="nav-toggle"
+            aria-controls="primary-nav"
+            aria-expanded="false"
+          >
+            <span class="nav-toggle-bars" aria-hidden="true"></span>
+            <span class="sr-only">菜单</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <article class="post">
+        <header class="post-head">
+          <div class="shell shell-narrow">
+            <p class="crumbs">
+              <a href="./index.html">首页</a>
+              <span class="sep">/</span>
+              <a href="./notes.html">全部记录</a>
+              <span class="sep">/</span>
+              <a href="./notes.html?cat=work">工作</a>
+            </p>
+
+            <span class="cat cat-work">工作</span>
+            <h1>一条 HTTP/2 长连接，卡了我三天</h1>
+
+            <div class="post-meta">
+              <time datetime="2026-10-05">2026-10-05</time>
+              <span class="sep">·</span>
+              <span>约 6 分钟</span>
+              <span class="sep">·</span>
+              <span>行情接口 · 排障 · 实盘</span>
+            </div>
+
+            <nav class="toc" aria-label="本页目录">
+              <p class="ai-label">本页目录</p>
+              <ol>
+                <li><a href="#symptom">现象：报错信息是空的</a></li>
+                <li><a href="#wrong">我一开始的错误方向</a></li>
+                <li><a href="#fix">三件真正起作用的事</a></li>
+                <li><a href="#rule">留下的规矩</a></li>
+              </ol>
+            </nav>
+          </div>
+        </header>
+
+        <div class="shell">
+          <div class="prose">
+            <p class="draft-note">
+              <strong>占位示例正文</strong>
+              工程记录类文章的排版演示：现象、排查、结论三段式，带代码块与表格。
+            </p>
+
+            <p class="lead">
+              批量做多周期趋势分析时，请求跑着跑着就开始失败，日志里只有一行
+              <code>获取K线异常:</code>，冒号后面什么都没有。空的报错比报错本身更难办，
+              因为你连是超时、是断连、还是参数被拒都不知道。
+            </p>
+
+            <h2 id="symptom">现象：报错信息是空的</h2>
+            <p>
+              抓下来看，异常对象是传输层的，消息体为空。翻译成能听懂的话就是：
+              连接被对端关掉了，而 SDK 把这件事原样抛了上来，没有补任何上下文。
+            </p>
+            <ul>
+              <li>失败是成批出现的，一次请求失败后面几个都失败——像是共用同一条连接。</li>
+              <li>手工单发一次请求总是好的，说明不是参数或权限问题。</li>
+              <li>失败集中在长时间空闲之后第一次调用，像是连接已经死了但客户端不知道。</li>
+            </ul>
+
+            <blockquote>
+              <p>
+                「异常消息为空」不是没信息，它本身就是信息：错误发生在比业务层更下面的地方。
+              </p>
+            </blockquote>
+
+            <h2 id="wrong">我一开始的错误方向</h2>
+            <p>
+              前两天的做法都是错的：加重试、加 sleep、把 SDK 换成手写请求。
+              手写请求那次甚至看起来「修好了」——因为我顺手把连接改成了每次新建。
+              它掩盖了真正的问题：高频重建连接反而让情况更糟。
+            </p>
+
+            <pre><code># 错的做法：每次调用都新建客户端实例
+for sym in symbols:
+    api = MarketAPI(instType="SWAP")   # 连接重建，代价是握手与断连
+    data = api.get_candlesticks(inst_id=sym, bar=bar)
+
+# 对的做法：实例复用，显式设超时，失败时按连接级错误重建一次
+api = MarketAPI(instType="SWAP")       # 进程内长驻
+api.timeout = 15                        # 没有超时，卡死会一直占着调度
+data = fetch_with_rebuild(api, sym, bar)</code></pre>
+            <p class="code-cap">代码块示例：左边注释标出错误方向，右边是最后留下的写法。</p>
+
+            <h2 id="fix">三件真正起作用的事</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>动作</th>
+                  <th>解决什么</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>给行情实例设显式超时</td>
+                  <td>不再出现「整批请求卡住不动」，失败能在秒级暴露</td>
+                </tr>
+                <tr>
+                  <td>把实例改成进程内复用</td>
+                  <td>消除高频连接重建，断连频率显著下降</td>
+                </tr>
+                <tr>
+                  <td>识别为连接级错误时才重建，且只重建一次</td>
+                  <td>避免把参数错误当断连处理，也避免雪崩式反复重建</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              顺序很关键：<strong>先分类错误，再决定要不要重建连接</strong>。
+              一见到异常就重建，等于把所有 bug 都当成网络问题。
+            </p>
+
+            <h2 id="rule">留下的规矩</h2>
+            <ol>
+              <li>任何对外请求都必须有显式超时，默认值不可信。</li>
+              <li>批量接口按串行执行，别依赖会共享的全局适配器状态。</li>
+              <li>报错信息为空时，日志里要自己补上「哪个币、哪个周期、第几次重试」。</li>
+              <li>连续失败要升级成告警，而不是继续默默重试到第二天。</li>
+            </ol>
+
+            <div class="ai-note">
+              <p class="ai-label">如果只记一条</p>
+              <p>
+                传输层错误和业务错误必须分开处理。混在一起重试，
+                会把一个能在十秒内定位的问题拖成三天。
+              </p>
+            </div>
+
+            <p class="post-foot">
+              <span>分类：工作 · 标签：行情接口 / 排障</span>
+              <span>最后更新 2026-10-05</span>
+            </p>
+          </div>
+
+          <nav class="pager" aria-label="相邻文章">
+            <a class="pager-card" href="./note-night-run.html">
+              <span class="pager-label">更早的一篇 · 探索</span>
+              <span class="pager-title">夜跑到第 21 天：让打卡不需要意志力</span>
+            </a>
+            <a class="pager-card is-next" href="./note-trade-sizing.html">
+              <span class="pager-label">更新的一篇 · 交易</span>
+              <span class="pager-title">一笔下单要换算多少张：金额、杠杆与 USDT</span>
+            </a>
+          </nav>
+        </div>
+      </article>
+
+      <section class="closing">
+        <div class="shell closing-inner reveal">
+          <h2>同类问题还想看吗</h2>
+          <p>工作板块里都是这类工程记录：现象、错误方向、真正起作用的三件事。</p>
+          <div class="hero-actions">
+            <a class="btn btn-accent btn-lg" href="./notes.html?cat=work">更多工作的记录</a>
+            <a class="btn btn-ghost btn-lg" href="./contact.html">去留言板说两句</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div class="footer-brand">
+          <a class="wordmark" href="./index.html" aria-label="返回首页">
+            <span class="wordmark-mark" aria-hidden="true"></span>
+            <span class="wordmark-text">沈沉思</span>
+          </a>
+          <p>个人站。学习、交易、工作、项目、探索，五摊事，想到就记。</p>
+          <p class="footer-note">最后更新 2026-10-08</p>
+        </div>
+
+        <nav class="footer-links" aria-label="页脚板块导航">
+          <h3>板块</h3>
+          <a href="./notes.html?cat=study">学习</a>
+          <a href="./notes.html?cat=trade">交易</a>
+          <a href="./notes.html?cat=work">工作</a>
+          <a href="./notes.html?cat=project">项目</a>
+          <a href="./notes.html?cat=explore">探索</a>
+        </nav>
+
+        <div class="footer-links">
+          <h3>内容</h3>
+          <a href="./notes.html">全部记录</a>
+          <a href="./logs.html">全部日志</a>
+          <a href="./shares.html">全部分享</a>
+          <a href="./about.html">关于我</a>
+          <a href="./contact.html">写信给我</a>
+          <a href="#top">回到顶部</a>
+        </div>
+      </div>
+      <div class="shell footer-bottom">
+        <p>© 2026 沈沉思 · 个人站</p>
+        <p>站内文字、数字与文章为占位示例，替换后即正式版</p>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

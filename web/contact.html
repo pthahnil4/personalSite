@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>写信给我 · 沈沉思个人站</title>
+    <meta
+      name="description"
+      content="给沈沉思留言：可以直接发信到邮箱，也可以在这个页面写一段话，通过邮件寄过来，内容会暂存在你自己的设备上。"
+    />
+    <meta name="theme-color" content="#060B1B" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="./favicon.ico" />
+    <link rel="apple-touch-icon" href="./favicon.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <!-- ============ 顶部导航 ============ -->
+    <header class="site-header" id="top">
+      <div class="shell header-inner">
+        <a class="wordmark" href="./index.html" aria-label="返回个人站首页">
+          <span class="wordmark-mark" aria-hidden="true"></span>
+          <span class="wordmark-text">沈沉思</span>
+        </a>
+
+        <nav class="primary-nav" id="primary-nav" aria-label="主导航">
+          <a href="./index.html#panel">近况</a>
+          <a href="./index.html#shelf">板块</a>
+          <a href="./notes.html">记录</a>
+          <a href="./logs.html">日志</a>
+          <a href="./shares.html">分享</a>
+          <a href="./about.html">关于</a>
+        </nav>
+
+        <div class="header-actions">
+          <a class="btn btn-accent btn-sm" href="./contact.html">写信给我</a>
+          <button
+            class="nav-toggle"
+            type="button"
+            id="nav-toggle"
+            aria-controls="primary-nav"
+            aria-expanded="false"
+          >
+            <span class="nav-toggle-bars" aria-hidden="true"></span>
+            <span class="sr-only">菜单</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ============ 内页标题 ============ -->
+      <section class="page-head">
+        <div class="shell">
+          <p class="crumbs">
+            <a href="./index.html">首页</a>
+            <span class="sep">/</span>
+            <span>写信给我</span>
+          </p>
+          <h1>写信给我</h1>
+          <p class="page-lede">
+            看到我写错的地方、想问某段代码为什么这么处理、或者单纯想聊聊策略思路，
+            都可以留一句。回信时间一般排在实盘告警之后，但不会不回。
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ 留言表单 + 说明 ============ -->
+      <section class="section">
+        <div class="shell">
+          <div class="mailbox">
+            <!-- 左：留言 -->
+            <div class="reveal">
+              <div class="panel-block-head">
+                <div>
+                  <h3>写一句</h3>
+                  <p>
+                    填完点「寄出去」，会打开你自己的邮件客户端，内容已经写好，
+                    你按发送就行。同时在提交那一刻，这段话会存进这台设备，
+                    免得你换了个窗口就忘了自己写过什么。
+                  </p>
+                </div>
+              </div>
+
+              <form id="guestbook-form" data-mail="hi@example.com" novalidate>
+                <div class="field-grid">
+                  <div class="field">
+                    <label for="m-name">
+                      称呼<span class="req">必填</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="m-name"
+                      name="name"
+                      autocomplete="name"
+                      placeholder="怎么称呼你"
+                    />
+                    <p class="field-error"></p>
+                  </div>
+
+                  <div class="field">
+                    <label for="m-contact">
+                      回信邮箱<span class="req">选填</span>
+                    </label>
+                    <input
+                      type="email"
+                      id="m-contact"
+                      name="contact"
+                      autocomplete="email"
+                      placeholder="想收到回复就填"
+                    />
+                    <p class="field-error"></p>
+                  </div>
+
+                  <div class="field field-wide">
+                    <label for="m-body">
+                      想说的话<span class="req">必填</span>
+                    </label>
+                    <textarea
+                      id="m-body"
+                      name="body"
+                      rows="6"
+                      placeholder="哪一页、哪一段、什么问题。写具体一点我能回得快一点。"
+                    ></textarea>
+                    <p class="counter" id="m-count">0 / 600</p>
+                    <p class="field-error"></p>
+                  </div>
+                </div>
+
+                <p class="form-error" id="m-error" hidden>
+                  还有几处需要补一下，检查一下标红的地方。
+                </p>
+
+                <div class="form-actions">
+                  <button class="btn btn-accent btn-block" type="submit">
+                    记下来并准备寄出
+                  </button>
+                </div>
+
+                <div class="ai-note" id="m-done" hidden>
+                  <p class="ai-label">已经记在这台设备上了</p>
+                  <p>
+                    最后一步：<a class="inline-link" id="m-mail-link" href="mailto:hi@example.com"
+                      >用邮件客户端寄出去</a
+                    >。不想用邮件的话，也可以在下方的列表里复制全部内容，
+                    自己粘到任意渠道发给我。
+                  </p>
+                </div>
+
+                <p class="form-privacy">
+                  这段话只存在你正在用的这台设备上，不会上传到任何地方。
+                </p>
+              </form>
+            </div>
+
+            <!-- 右：暂存列表与说明 -->
+            <div class="reveal">
+              <div class="app-window">
+                <div class="app-chrome">
+                  <div class="app-chrome-left">
+                    <span class="app-dot" aria-hidden="true"></span>
+                    <span class="app-dot" aria-hidden="true"></span>
+                    <span class="app-dot" aria-hidden="true"></span>
+                  </div>
+                  <p class="app-title">这台设备上的留言</p>
+                  <p class="app-chrome-right" id="msg-count">还没有暂存</p>
+                </div>
+
+                <div class="app-col">
+                  <div class="msg-list">
+                    <p class="msg-empty" id="msg-empty">
+                      你还没有在这台设备上留过言。
+                    </p>
+                    <div id="msg-box"></div>
+                  </div>
+
+                  <p class="msg-actions">
+                    <button class="btn-tiny" type="button" id="msg-copy" hidden>
+                      复制全部留言
+                    </button>
+                    <button class="btn-tiny" type="button" id="msg-clear" hidden>
+                      清空本机暂存
+                    </button>
+                  </p>
+                </div>
+              </div>
+
+              <div class="week-card">
+                <p class="ai-label">直接发信</p>
+                <p style="font-size: 0.92rem; color: var(--ink-2)">
+                  邮箱地址是
+                  <a
+                    class="inline-link"
+                    href="mailto:hi@example.com?subject=%E6%9D%A5%E8%87%AA%E4%B8%AA%E4%BA%BA%E7%AB%99%E7%9A%84%E6%B6%88%E6%81%AF"
+                    >hi@example.com</a
+                  >
+                  （占位，正式版换成我自己的地址）。不想用表单也可以直接写。
+                </p>
+                <p class="week-foot">换地址只需要改这一页和本页脚本里的 data-mail</p>
+              </div>
+
+              <div class="draft-note">
+                <strong>关于「网友留言」的现状</strong>
+                这个页面现在做的是「本机暂存 + 邮件送达」，不是所有人都能看到的公开留言板。
+                公开留言板需要服务端把留言存下来，本站目前是纯静态页面，没有后端接口和数据库，
+                所以那一层还没有上线。要不要开放、要不要审核，我还在决定。
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 常见问答 ============ -->
+      <section class="section section-alt" id="faq">
+        <div class="shell shell-narrow">
+          <div class="section-head reveal">
+            <h2>关于联系的几个问题</h2>
+            <p>写得直白一点，省得来回问。</p>
+          </div>
+
+          <div class="faq-list">
+            <div class="faq-item reveal">
+              <h3>
+                <button class="faq-q" type="button" aria-expanded="false">
+                  多久回信？
+                  <span class="faq-icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="faq-a" hidden>
+                <p>
+                  正常一到三个工作日。只要那天实盘出过告警，回信就会往后挪一天——
+                  不是不想回，是要先把仓位和账弄对。
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item reveal">
+              <h3>
+                <button class="faq-q" type="button" aria-expanded="false">
+                  能不能给个具体的买卖建议？
+                  <span class="faq-icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="faq-a" hidden>
+                <p>
+                  不能。我自己用的东西只对我的资金规模、心理承受力和执行条件成立，
+                  直接搬给别人大概率是害人的。原理和实现可以聊得很细。
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item reveal">
+              <h3>
+                <button class="faq-q" type="button" aria-expanded="false">
+                  留言会不会被别人看到？
+                  <span class="faq-icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="faq-a" hidden>
+                <p>
+                  不会。现在这段话只存在你自己的设备上，再通过你本人的邮箱寄给我，
+                  中间没有服务器。等真的做公开留言板时，我会写清楚存哪里、谁能看、怎么删。
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item reveal">
+              <h3>
+                <button class="faq-q" type="button" aria-expanded="false">
+                  你写的东西能直接用吗？
+                  <span class="faq-icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="faq-a" hidden>
+                <p>
+                  思路可以，代码不要照搬。这个站里的记录是给我自己看的备忘，
+                  没有做过面向他人的兼容测试，涉及真钱的部分请自己复核一遍。
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item reveal">
+              <h3>
+                <button class="faq-q" type="button" aria-expanded="false">
+                  有 RSS 或者更新提醒吗？
+                  <span class="faq-icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="faq-a" hidden>
+                <p>
+                  还没有。目前只有页面本身，更新会先落在
+                  <a class="inline-link" href="./logs.html">日志</a>里，
+                  觉得值得展开的再写成
+                  <a class="inline-link" href="./notes.html">记录</a>。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 结尾 ============ -->
+      <section class="closing">
+        <div class="shell closing-inner reveal">
+          <h2>不确定要不要写，就先写</h2>
+          <p>
+            短消息一句也行。我回信的时候习惯带着具体的页和具体的段落，
+            所以你给得越具体，我答得越有用。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-accent btn-lg" href="./notes.html">先去翻翻记录</a>
+            <a class="btn btn-ghost btn-lg" href="./about.html">看看我是谁</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ 页脚 ============ -->
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div class="footer-brand">
+          <a class="wordmark" href="./index.html" aria-label="返回首页">
+            <span class="wordmark-mark" aria-hidden="true"></span>
+            <span class="wordmark-text">沈沉思</span>
+          </a>
+          <p>个人站。学习、交易、工作、项目、探索，五摊事，想到就记。</p>
+          <p class="footer-note">最后更新 2026-10-08</p>
+        </div>
+
+        <nav class="footer-links" aria-label="页脚板块导航">
+          <h3>板块</h3>
+          <a href="./notes.html?cat=study">学习</a>
+          <a href="./notes.html?cat=trade">交易</a>
+          <a href="./notes.html?cat=work">工作</a>
+          <a href="./notes.html?cat=project">项目</a>
+          <a href="./notes.html?cat=explore">探索</a>
+        </nav>
+
+        <div class="footer-links">
+          <h3>内容</h3>
+          <a href="./notes.html">全部记录</a>
+          <a href="./logs.html">全部日志</a>
+          <a href="./shares.html">全部分享</a>
+          <a href="./about.html">关于我</a>
+          <a href="./contact.html">写信给我</a>
+          <a href="#top">回到顶部</a>
+        </div>
+      </div>
+      <div class="shell footer-bottom">
+        <p>© 2026 沈沉思 · 个人站</p>
+        <p>站内文字、数字与文章为占位示例，替换后即正式版</p>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

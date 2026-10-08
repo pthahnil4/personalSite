@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>全部分享 · 沈沉思个人站</title>
+    <meta
+      name="description"
+      content="沈沉思读过的书、翻过的文档、用过的工具与播客：每条都写清楚它解决了我什么问题。可按书 / 文档 / 接口 / 播客 / 影片 / 工具筛选。"
+    />
+    <meta name="theme-color" content="#060B1B" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="./favicon.ico" />
+    <link rel="apple-touch-icon" href="./favicon.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <!-- ============ 顶部导航 ============ -->
+    <header class="site-header" id="top">
+      <div class="shell header-inner">
+        <a class="wordmark" href="./index.html" aria-label="返回个人站首页">
+          <span class="wordmark-mark" aria-hidden="true"></span>
+          <span class="wordmark-text">沈沉思</span>
+        </a>
+
+        <nav class="primary-nav" id="primary-nav" aria-label="主导航">
+          <a href="./index.html#panel">近况</a>
+          <a href="./index.html#shelf">板块</a>
+          <a href="./notes.html">记录</a>
+          <a href="./logs.html">日志</a>
+          <a href="./shares.html" class="is-current">分享</a>
+          <a href="./about.html">关于</a>
+        </nav>
+
+        <div class="header-actions">
+          <a class="btn btn-accent btn-sm" href="./contact.html">写信给我</a>
+          <button
+            class="nav-toggle"
+            type="button"
+            id="nav-toggle"
+            aria-controls="primary-nav"
+            aria-expanded="false"
+          >
+            <span class="nav-toggle-bars" aria-hidden="true"></span>
+            <span class="sr-only">菜单</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ============ 内页标题 ============ -->
+      <section class="page-head">
+        <div class="shell">
+          <p class="crumbs">
+            <a href="./index.html">首页</a>
+            <span class="sep">/</span>
+            <span>全部分享</span>
+          </p>
+          <h1>全部分享</h1>
+          <p class="page-lede">
+            读过、看过、翻过、用过的东西。收进来的标准只有一条：
+            能说清它解决了我什么问题。写不出这句话的，就不进这个列表。
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ 正在读 / 看 / 听 ============ -->
+      <section class="section">
+        <div class="shell">
+          <div class="section-head reveal">
+            <h2>正在读、正在看、正在听</h2>
+            <p>三个都在进行中。完结的会挪到下面的列表里，这里只留当下开着的。</p>
+          </div>
+
+          <div class="quote-grid">
+            <figure class="quote reveal">
+              <blockquote>
+                前面讲技术分析与基本面分析互相打脸的那几章，跟我自己跑策略得出的结论方向一致：
+                市场大部分时间是有效的，剩下的部分你未必抓得住。
+              </blockquote>
+              <figcaption>
+                <span class="avatar avatar-lg" aria-hidden="true">读</span>
+                <span>
+                  <strong>漫步华尔街</strong>
+                  <em>读到第 12 章 · 还剩 4 章</em>
+                </span>
+              </figcaption>
+            </figure>
+
+            <figure class="quote reveal">
+              <blockquote>
+                第二遍注意的不是那几个做空的人，而是他们从「看对了」到「赚到了」
+                中间那段被质疑的日子有多长。
+              </blockquote>
+              <figcaption>
+                <span class="avatar avatar-lg" aria-hidden="true">看</span>
+                <span>
+                  <strong>大空头</strong>
+                  <em>第二遍 · 看到第三次听证会那场</em>
+                </span>
+              </figcaption>
+            </figure>
+
+            <figure class="quote reveal">
+              <blockquote>
+                「能跑的丑代码，胜过没跑的漂亮代码」，但下一句才是重点：
+                丑代码的债要用文档来还，不然下次是你自己踩。
+              </blockquote>
+              <figcaption>
+                <span class="avatar avatar-lg" aria-hidden="true">听</span>
+                <span>
+                  <strong>一档讲工程实践的播客</strong>
+                  <em>通勤路上 · 已听 6 期</em>
+                </span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 分享列表 + 类型筛选 ============ -->
+      <section class="section section-alt" id="share-list">
+        <div class="shell">
+          <div class="list-toolbar reveal">
+            <div class="filters" role="tablist" aria-label="按类型筛选分享">
+              <button
+                class="filter is-active"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                data-cat="all"
+              >
+                全部 <span class="count">14</span>
+              </button>
+              <button
+                class="filter"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-cat="book"
+              >
+                书 <span class="count">3</span>
+              </button>
+              <button
+                class="filter"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-cat="doc"
+              >
+                文档 <span class="count">3</span>
+              </button>
+              <button
+                class="filter"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-cat="api"
+              >
+                接口 <span class="count">1</span>
+              </button>
+              <button
+                class="filter"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-cat="podcast"
+              >
+                播客 <span class="count">2</span>
+              </button>
+              <button
+                class="filter"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-cat="film"
+              >
+                影片 <span class="count">2</span>
+              </button>
+              <button
+                class="filter"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-cat="tool"
+              >
+                工具 <span class="count">3</span>
+              </button>
+            </div>
+            <p class="list-count" id="list-count">全部 14 条</p>
+          </div>
+
+          <p class="draft-note reveal">
+            <strong>占位内容说明</strong>
+            条目按实际读用来拟，书名与结论仍属演示。外部链接我一律留成了文字来源，
+            没有凭空补 URL：本机没有外网可核实，链接等你逐条确认后再加。
+          </p>
+
+          <div class="share-grid">
+            <article class="share" data-cat="doc">
+              <p class="share-kind">文档</p>
+              <h3>OKX 交易操作能力清单</h3>
+              <p>
+                下单、策略单、网格、杠杆、平仓这几类接口能做什么、参数容易踩在哪里，
+                列成一张表之后，我不用再为一个小参数翻半小时文档。
+              </p>
+              <p class="share-src">
+                <span>我自己整理</span>
+                <span class="accent-text">2026-10</span>
+              </p>
+            </article>
+
+            <article class="share" data-cat="doc">
+              <p class="share-kind">文档</p>
+              <h3>合并迁移方案与清单</h3>
+              <p>
+                七个阶段，每阶段都能独立验收、独立回滚。写的时候觉得多余，
+                出问题的时候它是唯一能救我的东西。
+              </p>
+              <p class="share-src">
+                <span>我自己整理</span>
+                <span class="accent-text">2026-10</span>
+              </p>
+            </article>
+
+            <article class="share" data-cat="doc">
+              <p class="share-kind">文档</p>
+              <h3>数据存储说明</h3>
+              <p>
+                哪些数据在数据库、哪些还在文件里、哪些丢了能重建。
+                这份说明让我在重构存储路径时不用靠记忆做隔离决策。
+              </p>
+              <p class="share-src">
+                <span>我自己整理</span>
+                <span class="accent-text">长期维护</span>
+              </p>
+            </article>
+
+            <article class="share" data-cat="book">
+              <p class="share-kind">书</p>
+              <h3>《漫步华尔街》</h3>
+              <p>
+                它没有教我任何能直接下单的东西，但把我从「这套指标应该有效」
+                推到「它大概只在某个区间有效」。
+              </p>
+              <p class="share-src">
+                <span>在读</span>
+                <span class="accent-text">进行中</span>
+              </p>
+            </article>
+
+            <article class="share" data-cat="book">
+              <p class="share-kind">书</p>
+              <h3>《证券分析》</h3>
+              <p>
+                重读第 3 章。以前只记住结论，这次注意到他把「估值」和「出价」
+                分成了两件事——这跟实盘里的仓位换算是一个道理。
+              </p>
+              <p class="share-src">
+                <span>重读</span>
+                <span class="accent-text">2026-10</span>
+              </p>
+            </article>
+
+            <article class="share" data-cat="book">
+              <p class="share-kind">书</p>
+              <h3>《思考，快与慢》</h3>
+              <p>
+                看完最大的用处是：我在策略日志里开始强制写「我当时为什么这么判」，
+                不然下次还是会用直觉代替数据。
+              </p>
+              <p class="share-src">
+                <span>读完</span>
+                <span class="accent-text">2026-08</span>
+              </p>
+            </article>
+
+            <article class="share" data-cat="api">
+              <p class="share-kind">接口</p>
+              <h3>交易所 v5 接口文档</h3>
+              <p>
+                真正有用的不是接口列表，是每个接口后面那行频率限制。
+                批量任务的设计余量全从这里来。
+              </p>
+              <p class="share-src">
+                <span>官方文档</span>
+                <span class="accent-text">长期在翻</span>
+              </p>
+            </article>
+
+            <article class="share" data-cat="podcast">
+              <p class="share-kind">播客</p>
+              <h3>一档讲工程实践的播客</h3>
+              <p>
+                治好了我一部分完美主义：先把能跑的版本推上去，
+                然后用文档和测试把债还上，而不是一直不推。
+              </p>
+              <p class="share-src">
+                <span>已听 6 期</span>
+                <span class="accent-text">持续</span>
+              </p>
+            </article>
+
+            <article class="share" data-cat="podcast">
+              <p class="share-kind">播客</p>
+              <h3>一档聊交易心理的访谈</h3>
+              <p>
+                嘉宾讲「看对方向但拿不住」那段，跟我自己复盘出来的结论一模一样。
+                差别只在我以前把它当成性格问题。
+              </p>
+              <p class="share-src">
+                <span>听完一集</span>
+                <span class="accent-text">2026-09</span>
+              </p>
+            </article>
+
+            <article class="share" data-cat="film">
+              <p class="share-kind">影片</p>
+              <h3>《大空头》第二遍</h3>
+              <p>
+                第一次看的是聪明人怎么赚钱，第二次看的是他们从看对到赚到之间
+                那段被质疑的日子有多长。
+              </p>
+              <p class="share-src">
+                <span>在看</span>
+                <span class="accent-text">进行中</span>
+              </p>
+            </article>
+
+            <article class="share" data-cat="film">
+              <p class="share-kind">影片</p>
+              <h3>四部今年看完的片子</h3>
+              <p>
+                看完才发现它们都在问同一个问题：一个人能把自己骗到什么程度。
+                展开写了一篇。
+              </p>
+              <p class="share-src">
+                <a class="inline-link" href="./note-four-films.html">我的记录</a>
+                <span class="accent-text">2026-09</span>
+              </p>
+            </article>
+
+            <article class="share" data-cat="tool">
+              <p class="share-kind">工具</p>
+              <h3>akshare</h3>
+              <p>
+                国内期货和 A 股的行情数据源，省掉了采购数据的钱。
+                代价是接口稳定性要自己兜——实时行情的品种名参数得记牢。
+              </p>
+              <p class="share-src">
+                <span>数据源</span>
+                <span class="accent-text">长期在用</span>
+              </p>
+            </article>
+
+            <article class="share" data-cat="tool">
+              <p class="share-kind">工具</p>
+              <h3>服务器面板</h3>
+              <p>
+                不是干活的工具，是「不干活时能提醒我出事了」的工具。
+                磁盘、内存、端口这三件事它比我自己盯得紧。
+              </p>
+              <p class="share-src">
+                <span>运维</span>
+                <span class="accent-text">长期在用</span>
+              </p>
+            </article>
+
+            <article class="share" data-cat="tool">
+              <p class="share-kind">工具</p>
+              <h3>写代码和写这个站用的那套</h3>
+              <p>
+                一个能翻仓库、能跑脚本、能直接改页面的助手。
+                这个站本身就是用它搭起来的，骨架当天就能看。
+              </p>
+              <p class="share-src">
+                <span>开发与建站</span>
+                <span class="accent-text">现在</span>
+              </p>
+            </article>
+          </div>
+
+          <p class="feed-empty" id="list-empty" hidden>这类内容还没有。</p>
+
+          <p class="preview-caption reveal">
+            类型筛选同样支持直达链接，例如 <code>shares.html?cat=tool</code> 只看工具。
+            读到有感觉的东西我就加一条，不保证频率。
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ 页脚 ============ -->
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div class="footer-brand">
+          <a class="wordmark" href="./index.html" aria-label="返回首页">
+            <span class="wordmark-mark" aria-hidden="true"></span>
+            <span class="wordmark-text">沈沉思</span>
+          </a>
+          <p>个人站。学习、交易、工作、项目、探索，五摊事，想到就记。</p>
+          <p class="footer-note">最后更新 2026-10-08</p>
+        </div>
+
+        <nav class="footer-links" aria-label="页脚板块导航">
+          <h3>板块</h3>
+          <a href="./notes.html?cat=study">学习</a>
+          <a href="./notes.html?cat=trade">交易</a>
+          <a href="./notes.html?cat=work">工作</a>
+          <a href="./notes.html?cat=project">项目</a>
+          <a href="./notes.html?cat=explore">探索</a>
+        </nav>
+
+        <div class="footer-links">
+          <h3>内容</h3>
+          <a href="./notes.html">全部记录</a>
+          <a href="./logs.html">全部日志</a>
+          <a href="./shares.html">全部分享</a>
+          <a href="./about.html">关于我</a>
+          <a href="./contact.html">写信给我</a>
+          <a href="#top">回到顶部</a>
+        </div>
+      </div>
+      <div class="shell footer-bottom">
+        <p>© 2026 沈沉思 · 个人站</p>
+        <p>站内文字、数字与文章为占位示例，替换后即正式版</p>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

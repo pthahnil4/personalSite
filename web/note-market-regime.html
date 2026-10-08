@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>12 级市场状态是怎么定下来的 · 学习 · 沈沉思个人站</title>
+    <meta
+      name="description"
+      content="把行情切成 12 种状态听起来很整齐，真正难的是相邻状态之间那条边界怎么判。这篇写最后留下的条件和被砍掉的理由。"
+    />
+    <meta name="theme-color" content="#060B1B" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="./favicon.ico" />
+    <link rel="apple-touch-icon" href="./favicon.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="reading-bar" aria-hidden="true"></div>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <!-- ============ 顶部导航 ============ -->
+    <header class="site-header" id="top">
+      <div class="shell header-inner">
+        <a class="wordmark" href="./index.html" aria-label="返回个人站首页">
+          <span class="wordmark-mark" aria-hidden="true"></span>
+          <span class="wordmark-text">沈沉思</span>
+        </a>
+
+        <nav class="primary-nav" id="primary-nav" aria-label="主导航">
+          <a href="./index.html#panel">近况</a>
+          <a href="./index.html#shelf">板块</a>
+          <a href="./notes.html" class="is-current">记录</a>
+          <a href="./logs.html">日志</a>
+          <a href="./shares.html">分享</a>
+          <a href="./about.html">关于</a>
+        </nav>
+
+        <div class="header-actions">
+          <a class="btn btn-accent btn-sm" href="./contact.html">写信给我</a>
+          <button
+            class="nav-toggle"
+            type="button"
+            id="nav-toggle"
+            aria-controls="primary-nav"
+            aria-expanded="false"
+          >
+            <span class="nav-toggle-bars" aria-hidden="true"></span>
+            <span class="sr-only">菜单</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <article class="post">
+        <header class="post-head">
+          <div class="shell shell-narrow">
+            <p class="crumbs">
+              <a href="./index.html">首页</a>
+              <span class="sep">/</span>
+              <a href="./notes.html">全部记录</a>
+              <span class="sep">/</span>
+              <a href="./notes.html?cat=study">学习</a>
+            </p>
+
+            <span class="cat cat-study">学习</span>
+            <h1>12 级市场状态是怎么定下来的</h1>
+
+            <div class="post-meta">
+              <time datetime="2026-10-07">2026-10-07</time>
+              <span class="sep">·</span>
+              <span>约 8 分钟</span>
+              <span class="sep">·</span>
+              <span>市场结构 · 指标口径 · 策略</span>
+            </div>
+
+            <nav class="toc" aria-label="本页目录">
+              <p class="ai-label">本页目录</p>
+              <ol>
+                <li><a href="#why">为什么要给行情分级</a></li>
+                <li><a href="#lines">相邻状态之间那条线画在哪</a></li>
+                <li><a href="#cut">被砍掉的四个判据</a></li>
+                <li><a href="#check">事后验证：拿真实数据跑一遍</a></li>
+                <li><a href="#next">现在还不满意的地方</a></li>
+              </ol>
+            </nav>
+          </div>
+        </header>
+
+        <div class="shell">
+          <div class="prose">
+            <p class="draft-note">
+              <strong>占位示例正文</strong>
+              这一篇专门用来演示长文排版：小标题、有序/无序列表、引用、行内代码、代码块、
+              表格、配图占位、提示框、分隔线都用上了。换成你自己的文章时，保留结构、替换文字就行。
+            </p>
+
+            <p class="lead">
+              给行情分状态，第一版我做了 12 级。看起来很清楚：趋势强、趋势弱、震荡偏多、
+              震荡偏空、突破前夜、假突破回落……每一级都能讲出道理。
+              真正上手之后才发现，讲得出道理的和能稳定判出来的是两回事。
+            </p>
+
+            <h2 id="why">为什么要给行情分级</h2>
+            <p>
+              起因很实际：同一套策略在不同行情下的表现差得太远，而我不想用「今天手感不好」来解释。
+              需要有一个可重复的口径，把「现在的行情是什么样」写成一个能算的东西，
+              这样策略表现的好坏才有对照物。
+            </p>
+            <ul>
+              <li>趋势类策略要有趋势才开仓，避免在窄幅震荡里被反复磨损。</li>
+              <li>区间类策略反过来，要在震荡里做，趋势一起来就得让位。</li>
+              <li>两种仓位并行时，需要一个统一的裁判来分配名额，而不是各说各话。</li>
+            </ul>
+            <p>
+              所以分级的第一个约束不是「切得细」，而是<strong>每一级都要对应一个明确的动作</strong>。
+              分完发现某一级既不知道该干什么、也不影响任何参数，那这一级就是多余的。
+            </p>
+
+            <h2 id="lines">相邻状态之间那条线画在哪</h2>
+            <p>
+              大部分争议都发生在相邻状态之间，而不是两端。趋势强和趋势中很好区分，
+              「趋势中」和「震荡偏多」之间的那条线，最初是用固定阈值画的：
+              效率系数大于某个值算趋势，小于另一个值算震荡。
+            </p>
+            <blockquote>
+              <p>
+                固定阈值的问题在于，它假设波动率是稳定的。而波动率恰恰是最不稳定的那个东西。
+              </p>
+            </blockquote>
+            <p>
+              同一个阈值，用在低波动周期里会把噪声当趋势，用在高波动周期里又把真趋势判成噪声。
+              最后改成相对口径：把趋势强度除以该周期自身的波动幅度，
+              即 <code>efficiency_ratio / atr_pct</code>，阈值只用来判断「相对比例」而不是绝对值。
+              这一步之后，不同币、不同周期的判定才第一次可比。
+            </p>
+
+            <pre><code># 口径统一后的一段判定（占位示例）
+score = er / max(atr_pct, 1e-6)   # 趋势强度 / 自身波动
+if score &gt; 1.6 and slope_up:
+    regime = "trend_strong"
+elif score &gt; 0.9:
+    regime = "trend_mid"
+else:
+    regime = "range_bias"          # 剩下的归到震荡，再细分偏多偏空</code></pre>
+            <p class="code-cap">代码块示例：底色比正文更深一档，横向可滚动，字号略小。</p>
+
+            <h3 id="table">留下来的判据一览</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>判据</th>
+                  <th>作用</th>
+                  <th>为什么留下</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>效率系数</td>
+                  <td>衡量「走得直不直」</td>
+                  <td>只关心净位移与路径长度之比，不受单根 K 线影响</td>
+                </tr>
+                <tr>
+                  <td>ATR%</td>
+                  <td>衡量「自身波动多大」</td>
+                  <td>把绝对阈值变成相对比例，跨币种可比的唯一办法</td>
+                </tr>
+                <tr>
+                  <td>SAR 转向</td>
+                  <td>给出方向与翻转时点</td>
+                  <td>作为方向项，与强度项分工，避免一个指标背两个职责</td>
+                </tr>
+                <tr>
+                  <td>关键位距离</td>
+                  <td>判断是不是「突破前夜」</td>
+                  <td>只用于压缩类状态，范围窄，不容易误伤其他级</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h2 id="cut">被砍掉的四个判据</h2>
+            <p>
+              砍掉的比留下的多，而且砍掉的理由都一样：<strong>与其他判据高度相关，却不更可靠</strong>。
+            </p>
+            <ol>
+              <li>成交量放大倍数。在永续合约上和价格方向的耦合太强，等于让价格投了两次票。</li>
+              <li>MACD 柱的斜率。它本身就是二阶导，再取斜率就成了噪声放大器。</li>
+              <li>资金费率。对短线状态几乎无用，只在极端值时有信息量，那就该单独当异常处理。</li>
+              <li>「连续 N 根同色」。看着直观，实际是把去噪的责任推给了 K 线粒度。</li>
+            </ol>
+
+            <div class="ai-note">
+              <p class="ai-label">踩过的坑</p>
+              <p>
+                曾经把「假突破回落」单独做成一级，结果它和「趋势中」的翻转时点总是差半根 K 线，
+                两个状态互相抢标签，判定来回跳。合并成一个状态、用一个标记位记录「刚发生过假突破」之后，
+                整套分级才稳定下来。
+              </p>
+            </div>
+
+            <h2 id="check">事后验证：拿真实数据跑一遍</h2>
+            <p>
+              改完判定逻辑以后，冒烟测试全绿——那只能证明代码跑通了，证明不了判定是对的。
+              真正有用的一次验证，是把生产环境里已经跑过的真实行情取出来，
+              按新旧两套口径各标一遍状态，只看两者不一致的那几天，
+              再对着 K 线图人工判断「哪套标得更像当时的实际情况」。
+            </p>
+
+            <figure>
+              <div class="img-slot" role="img" aria-label="配图占位：状态标注与实际走势对照图">
+                配图占位 · 这里换成一张「状态标注 + 实际走势」的对照图
+              </div>
+              <figcaption>图注示例：说明这张图在证明什么，而不是它是什么。</figcaption>
+            </figure>
+
+            <p>
+              人工核对下来，不一致的地方大多是新口径更保守，这正是想要的效果：
+              宁可少判一级趋势，也不要在震荡里开趋势仓。
+            </p>
+
+            <hr />
+
+            <h2 id="next">现在还不满意的地方</h2>
+            <p>
+              两个地方悬着。一是「突破前夜」这类压缩状态，判据本质上是波动收缩，
+              收缩之后不一定向上，方向要靠额外的过滤，而这个过滤器我还没找到可靠的。
+              二是分级是离散的，而市场是连续的，边界附近的抖动只能靠最小停留时长来压制，
+              压制之后又会带来滞后。这两件事互相拉扯，现在用的是一个我不太满意但能跑的折中。
+            </p>
+            <p>
+              如果哪天真想明白了，再写一篇。届时希望这篇能被留在站点里，
+              作为「当时我以为的清楚」的证据。
+            </p>
+
+            <p class="post-foot">
+              <span>分类：学习 · 标签：市场结构 / 指标口径</span>
+              <span>最后更新 2026-10-07</span>
+            </p>
+          </div>
+
+          <!-- ============ 上下篇 ============ -->
+          <nav class="pager" aria-label="相邻文章">
+            <a class="pager-card" href="./note-trade-sizing.html">
+              <span class="pager-label">更早的一篇 · 交易</span>
+              <span class="pager-title">一笔下单要换算多少张：金额、杠杆与 USDT</span>
+            </a>
+            <a class="pager-card is-next" href="./note-merge-migration.html">
+              <span class="pager-label">更新的一篇 · 项目</span>
+              <span class="pager-title">把三个市场并成一个应用，分七步走</span>
+            </a>
+          </nav>
+        </div>
+      </article>
+
+      <!-- ============ 结尾行动区 ============ -->
+      <section class="closing">
+        <div class="shell closing-inner reveal">
+          <h2>这一段你有不同判法吗</h2>
+          <p>
+            判定类的问题最怕只有自己认同。要是你觉得哪条边界画得不对，
+            欢迎写信告诉我你的对照标准。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-accent btn-lg" href="./contact.html">去留言板聊</a>
+            <a class="btn btn-ghost btn-lg" href="./notes.html?cat=study">更多学习的记录</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ 页脚 ============ -->
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div class="footer-brand">
+          <a class="wordmark" href="./index.html" aria-label="返回首页">
+            <span class="wordmark-mark" aria-hidden="true"></span>
+            <span class="wordmark-text">沈沉思</span>
+          </a>
+          <p>个人站。学习、交易、工作、项目、探索，五摊事，想到就记。</p>
+          <p class="footer-note">最后更新 2026-10-08</p>
+        </div>
+
+        <nav class="footer-links" aria-label="页脚板块导航">
+          <h3>板块</h3>
+          <a href="./notes.html?cat=study">学习</a>
+          <a href="./notes.html?cat=trade">交易</a>
+          <a href="./notes.html?cat=work">工作</a>
+          <a href="./notes.html?cat=project">项目</a>
+          <a href="./notes.html?cat=explore">探索</a>
+        </nav>
+
+        <div class="footer-links">
+          <h3>内容</h3>
+          <a href="./notes.html">全部记录</a>
+          <a href="./logs.html">全部日志</a>
+          <a href="./shares.html">全部分享</a>
+          <a href="./about.html">关于我</a>
+          <a href="./contact.html">写信给我</a>
+          <a href="#top">回到顶部</a>
+        </div>
+      </div>
+      <div class="shell footer-bottom">
+        <p>© 2026 沈沉思 · 个人站</p>
+        <p>站内文字、数字与文章为占位示例，替换后即正式版</p>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

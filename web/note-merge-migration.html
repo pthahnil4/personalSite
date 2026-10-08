@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>把三个市场并成一个应用，分七步走 · 项目 · 沈沉思个人站</title>
+    <meta
+      name="description"
+      content="期货、股票、K 线训练三个独立项目并入 cryptoTrade 主应用的完整过程：冲突全景、七个可独立验收的阶段、两个反直觉的结论。"
+    />
+    <meta name="theme-color" content="#060B1B" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="./favicon.ico" />
+    <link rel="apple-touch-icon" href="./favicon.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="reading-bar" aria-hidden="true"></div>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="site-header" id="top">
+      <div class="shell header-inner">
+        <a class="wordmark" href="./index.html" aria-label="返回个人站首页">
+          <span class="wordmark-mark" aria-hidden="true"></span>
+          <span class="wordmark-text">沈沉思</span>
+        </a>
+
+        <nav class="primary-nav" id="primary-nav" aria-label="主导航">
+          <a href="./index.html#panel">近况</a>
+          <a href="./index.html#shelf">板块</a>
+          <a href="./notes.html" class="is-current">记录</a>
+          <a href="./logs.html">日志</a>
+          <a href="./shares.html">分享</a>
+          <a href="./about.html">关于</a>
+        </nav>
+
+        <div class="header-actions">
+          <a class="btn btn-accent btn-sm" href="./contact.html">写信给我</a>
+          <button
+            class="nav-toggle"
+            type="button"
+            id="nav-toggle"
+            aria-controls="primary-nav"
+            aria-expanded="false"
+          >
+            <span class="nav-toggle-bars" aria-hidden="true"></span>
+            <span class="sr-only">菜单</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <article class="post">
+        <header class="post-head">
+          <div class="shell shell-narrow">
+            <p class="crumbs">
+              <a href="./index.html">首页</a>
+              <span class="sep">/</span>
+              <a href="./notes.html">全部记录</a>
+              <span class="sep">/</span>
+              <a href="./notes.html?cat=project">项目</a>
+            </p>
+
+            <span class="cat cat-project">项目</span>
+            <h1>把三个市场并成一个应用，分七步走</h1>
+
+            <div class="post-meta">
+              <time datetime="2026-10-08">2026-10-08</time>
+              <span class="sep">·</span>
+              <span>约 9 分钟</span>
+              <span class="sep">·</span>
+              <span>架构 · 迁移 · 验收</span>
+            </div>
+
+            <nav class="toc" aria-label="本页目录">
+              <p class="ai-label">本页目录</p>
+              <ol>
+                <li><a href="#why">为什么不继续两套并行</a></li>
+                <li><a href="#clash">冲突全景：谁覆盖谁</a></li>
+                <li><a href="#phases">七个阶段，每步都能回退</a></li>
+                <li><a href="#surprise">两个反直觉的结论</a></li>
+                <li><a href="#rule">留下的规矩</a></li>
+              </ol>
+            </nav>
+          </div>
+        </header>
+
+        <div class="shell">
+          <div class="prose">
+            <p class="draft-note">
+              <strong>占位示例正文</strong>
+              迁移过程记录的排版演示：背景、冲突、阶段、结论四段，带表格与代码块。
+              细节按实际推进过程拟写，数字与提交号可在正式版核对。
+            </p>
+
+            <p class="lead">
+              手头有两个 Flask 应用：一个跑 OKX 永续的实盘监控与下单，另一个跑国内期货和股票。
+              各自一套模板、一套导航、一套部署脚本，还都叫「监控台」。
+              并到一起这件事我拖了两周，因为直觉上觉得「能跑就别动」。
+            </p>
+
+            <h2 id="why">为什么不继续两套并行</h2>
+            <p>
+              真正的成本不是代码重复，是<strong>心智要分两份</strong>。同一个策略思路要在两个仓库里
+              各写一遍，改一处指标口径得记着改两处，服务器上要留两个端口、两套进程守护、
+              两套备份路径。加上第三个模块（K 线训练）准备进来，我算了一下：
+              再并行下去，第四套一定会出现。
+            </p>
+            <ul>
+              <li>被并入的那一侧没有版本仓库，改错了没有回退点。</li>
+              <li>两侧的解释器环境不一致，一边能跑另一边缺依赖。</li>
+              <li>策略层已经有一半是共用的，继续分开只是把耦合藏起来。</li>
+            </ul>
+
+            <blockquote>
+              <p>
+                合并的收益要能立刻兑现，否则就别合并。我把这条写在方案第一行，
+                用来挡住「顺手重构一下」的冲动。
+              </p>
+            </blockquote>
+
+            <h2 id="clash">冲突全景：谁覆盖谁</h2>
+            <p>
+              动手前先把会撞的地方列全，因为合并事故几乎都不是「报错」，
+              而是<strong>静默地用了错的那一份</strong>。
+            </p>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>撞车点</th>
+                  <th>表现形式</th>
+                  <th>处理</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>同名模块</td>
+                  <td>
+                    <code>import task</code> 导进来的不是当前模块，表现为莫名其妙的密钥错误
+                  </td>
+                  <td>显式设置搜索路径顺序，包名带上下级目录</td>
+                </tr>
+                <tr>
+                  <td>模板遮蔽</td>
+                  <td>两侧都有 <code>index.html</code>，页面显示的是另一套的内容</td>
+                  <td>模板按模块加前缀目录，逐页复验</td>
+                </tr>
+                <tr>
+                  <td>静态资源</td>
+                  <td>同名 CSS 互相覆盖，改样式不生效</td>
+                  <td>公共样式合一，模块样式独立文件</td>
+                </tr>
+                <tr>
+                  <td>数据目录</td>
+                  <td>硬编码路径，换机器就找不到数据</td>
+                  <td>外置路径自动识别，数据与代码隔离</td>
+                </tr>
+                <tr>
+                  <td>依赖清单</td>
+                  <td>一侧多装了冗余包，另一侧缺关键包</td>
+                  <td>合并后重新对齐清单，删掉不再用的</td>
+                </tr>
+                <tr>
+                  <td>凭据</td>
+                  <td>明文密钥散落在几个脚本里，其中一处会随仓库公开</td>
+                  <td>统一走一处配置，复扫并核对</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h2 id="phases">七个阶段，每步都能回退</h2>
+            <p>
+              每个阶段的定义是：改完能独立验收，出问题能独立回退。
+              这条约束比「分得细」更重要——它决定了我敢不敢在实盘跑着的时候动手。
+            </p>
+
+            <pre><code>Phase 0  基线与快照      —— 先把能跑的状态固定下来，没有仓库的先建仓库
+Phase 1  公共策略层      —— 两套共用的指标与判定先并成一份
+Phase 2  期货模块并入    —— 监控台、星标行情、多周期三页
+Phase 3  股票模块并入    —— 依赖 Phase 2 的目录约定
+Phase 4  K 线训练并入    —— 主战场：账号体系与榜单要对齐
+Phase 5  配置、密钥、依赖收口
+Phase 6  部署入口与前端收口 —— 单实例守护、模板遮蔽、降级提示
+Phase 7  文档归档与模块边界收口</code></pre>
+            <p class="code-cap">阶段清单：前四步搬功能，后三步收边界。后三步看起来没内容，出事最多。</p>
+
+            <p>
+              Phase 4 花的时间最长，因为 K 线训练带自己的账号概念，而主应用原来的假设是
+              「这是我自己用的控制台」。两种用户模型撞在一起时，
+              我选择把训练侧的账号做成独立子系统，而不是硬套主应用的结构。
+            </p>
+
+            <h2 id="surprise">两个反直觉的结论</h2>
+            <h3>1. 导航不会自动长出新入口</h3>
+            <p>
+              导航改成数据驱动之后，我以为新模块并进来，页面入口会自己出现。
+              实际不会：只要用户保存过自定义配置，读的就是那份配置，
+              新增的内置入口必须手动添加一次。验收口径因此改成两句
+              ——「新库自带」和「老库需手动加」，不能混着说。
+            </p>
+
+            <h3>2. 冒烟全绿证明不了判定逻辑是对的</h3>
+            <p>
+              改完一个依赖外部数据的判定条件后，页面能开、接口有返回、没有报错。
+              但那些结果只能证明它跑起来了，证明不了它判得对。
+              后来定了条规矩：改判定逻辑，就拿生产真实数据做一次前后对照。
+            </p>
+
+            <h2 id="rule">留下的规矩</h2>
+            <ol>
+              <li>合并前先给没有仓库的一侧建仓库，回退点比效率重要。</li>
+              <li>同名模块、同名模板要当成缺陷登记，不能靠记忆避开。</li>
+              <li>阶段拆分标准是「能独立验收 + 能独立回退」，不是工作量。</li>
+              <li>后三步（依赖、凭据、文档）单独占提交，混进功能里就等于没做。</li>
+              <li>改了判定逻辑，就用真实数据对照一次，别用冒烟结果代替。</li>
+            </ol>
+
+            <div class="ai-note">
+              <p class="ai-label">如果只记一条</p>
+              <p>
+                合并的风险不在被搬的代码里，在两边都以为「这份是我的」的那些文件上：
+                模块名、模板名、数据路径、凭据。
+              </p>
+            </div>
+
+            <p class="post-foot">
+              <span>分类：项目 · 标签：架构 / 迁移 / 验收</span>
+              <span>最后更新 2026-10-08</span>
+            </p>
+          </div>
+
+          <nav class="pager" aria-label="相邻文章">
+            <a class="pager-card" href="./note-market-regime.html">
+              <span class="pager-label">更早的一篇 · 学习</span>
+              <span class="pager-title">12 级市场状态是怎么定下来的</span>
+            </a>
+            <a class="pager-card is-next" href="./notes.html">
+              <span class="pager-label">已是最新 · 回到列表</span>
+              <span class="pager-title">看全部记录</span>
+            </a>
+          </nav>
+        </div>
+      </article>
+
+      <section class="closing">
+        <div class="shell closing-inner reveal">
+          <h2>项目板块还有三篇在排队</h2>
+          <p>
+            导航怎么做成数据驱动、存储为什么选数据库权威源加文件兜底、
+            随笔复盘模块的设计取舍——都还没写正文。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-accent btn-lg" href="./notes.html?cat=project">看项目板块</a>
+            <a class="btn btn-ghost btn-lg" href="./contact.html">有问题要问</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div class="footer-brand">
+          <a class="wordmark" href="./index.html" aria-label="返回首页">
+            <span class="wordmark-mark" aria-hidden="true"></span>
+            <span class="wordmark-text">沈沉思</span>
+          </a>
+          <p>个人站。学习、交易、工作、项目、探索，五摊事，想到就记。</p>
+          <p class="footer-note">最后更新 2026-10-08</p>
+        </div>
+
+        <nav class="footer-links" aria-label="页脚板块导航">
+          <h3>板块</h3>
+          <a href="./notes.html?cat=study">学习</a>
+          <a href="./notes.html?cat=trade">交易</a>
+          <a href="./notes.html?cat=work">工作</a>
+          <a href="./notes.html?cat=project">项目</a>
+          <a href="./notes.html?cat=explore">探索</a>
+        </nav>
+
+        <div class="footer-links">
+          <h3>内容</h3>
+          <a href="./notes.html">全部记录</a>
+          <a href="./logs.html">全部日志</a>
+          <a href="./shares.html">全部分享</a>
+          <a href="./about.html">关于我</a>
+          <a href="./contact.html">写信给我</a>
+          <a href="#top">回到顶部</a>
+        </div>
+      </div>
+      <div class="shell footer-bottom">
+        <p>© 2026 沈沉思 · 个人站</p>
+        <p>站内文字、数字与文章为占位示例，替换后即正式版</p>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

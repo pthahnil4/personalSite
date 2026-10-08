@@ -1,0 +1,15 @@
+# 统一换行符：站内文件始终以 LF 入库，避免 Windows 检出转成 CRLF 后
+# 与自检脚本的字节比对产生无意义差异。
+* text=auto
+
+*.html text eol=lf
+*.css  text eol=lf
+*.js   text eol=lf
+*.py   text eol=lf
+*.svg  text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
+
+*.ico binary
+*.png binary
+*.jpg binary

@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Orbit · AI 团队协作平台 — 让团队专注于真正重要的工作</title>
+    <meta
+      name="description"
+      content="Orbit 用 AI 接管任务拆解、会议归档与进度同步，让团队把注意力留给需要人来判断的工作。支持任务看板、项目风险预警、智能纪要，中文界面，手机与桌面同享。"
+    />
+    <meta name="theme-color" content="#060B1B" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <!-- ============ 顶部导航 ============ -->
+    <header class="site-header" id="top">
+      <div class="shell header-inner">
+        <a class="wordmark" href="#top" aria-label="Orbit 首页">
+          <span class="wordmark-mark" aria-hidden="true"></span>
+          <span class="wordmark-text">Orbit</span>
+        </a>
+
+        <nav class="primary-nav" id="primary-nav" aria-label="主导航">
+          <a href="#preview">产品预览</a>
+          <a href="#features">核心功能</a>
+          <a href="#voices">客户评价</a>
+          <a href="#pricing">价格</a>
+          <a href="#faq">常见问题</a>
+        </nav>
+
+        <div class="header-actions">
+          <button class="btn btn-accent btn-sm" type="button" data-demo-open>
+            免费体验
+          </button>
+          <button
+            class="nav-toggle"
+            type="button"
+            id="nav-toggle"
+            aria-controls="primary-nav"
+            aria-expanded="false"
+          >
+            <span class="nav-toggle-bars" aria-hidden="true"></span>
+            <span class="sr-only">菜单</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ============ 首屏产品介绍 ============ -->
+      <section class="hero" id="hero">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="shell hero-inner">
+          <p class="eyebrow reveal">AI 团队协作平台</p>
+          <h1 class="hero-title reveal">
+            让团队专注于<br />
+            <span class="accent-text">真正重要</span>的工作
+          </h1>
+          <p class="hero-lede reveal">
+            Orbit 把任务拆解、会议记录、进度同步这些反复消耗时间的琐事交给
+            AI，人只负责判断与创造。团队不必再为"谁在做什么、到哪一步了"开一次会。
+          </p>
+          <div class="hero-actions reveal">
+            <button class="btn btn-accent btn-lg" type="button" data-demo-open>
+              预约演示体验
+            </button>
+            <a class="btn btn-ghost btn-lg" href="#preview">看看产品长什么样</a>
+          </div>
+          <dl class="hero-stats reveal">
+            <div>
+              <dt>每周为每人省下</dt>
+              <dd>6.5 小时<span class="stat-unit">会议与同步</span></dd>
+            </div>
+            <div>
+              <dt>任务遗漏率下降</dt>
+              <dd>42%<span class="stat-unit">上线 6 个月后</span></dd>
+            </div>
+            <div>
+              <dt>正在使用 Orbit 的团队</dt>
+              <dd>1,200+<span class="stat-unit">研发 · 产品 · 咨询</span></dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- ============ 产品界面预览 ============ -->
+      <section class="section" id="preview">
+        <div class="shell">
+          <div class="section-head reveal">
+            <h2>一个面板，看清任务与进度</h2>
+            <p>
+              左边是每个人今天要交付的事，右边是所有项目的真实状态。
+              下面是 Orbit 团队协作面板的界面预览，任务、负责人、截止日期与风险都在同一屏。
+            </p>
+          </div>
+
+          <div class="app-window reveal" role="img" aria-label="Orbit 协作面板界面预览：左侧为任务列表，右侧为项目进度">
+            <div class="app-chrome">
+              <div class="app-chrome-left">
+                <span class="app-dot" aria-hidden="true"></span>
+                <span class="app-dot" aria-hidden="true"></span>
+                <span class="app-dot" aria-hidden="true"></span>
+              </div>
+              <p class="app-title">Orbit · 周三 10:24 · 产品中心</p>
+              <p class="app-chrome-right">14 人在线</p>
+            </div>
+
+            <div class="app-body">
+              <!-- 任务列表 -->
+              <div class="app-col app-col-tasks">
+                <div class="app-col-head">
+                  <h3>任务列表</h3>
+                  <div class="filters" role="tablist" aria-label="任务筛选">
+                    <button
+                      class="filter is-active"
+                      type="button"
+                      role="tab"
+                      aria-selected="true"
+                      data-filter="all"
+                    >
+                      全部 <span class="count">6</span>
+                    </button>
+                    <button
+                      class="filter"
+                      type="button"
+                      role="tab"
+                      aria-selected="false"
+                      data-filter="doing"
+                    >
+                      进行中 <span class="count">3</span>
+                    </button>
+                    <button
+                      class="filter"
+                      type="button"
+                      role="tab"
+                      aria-selected="false"
+                      data-filter="blocked"
+                    >
+                      阻塞 <span class="count">1</span>
+                    </button>
+                  </div>
+                </div>
+
+                <ul class="task-list" id="task-list">
+                  <li class="task" data-status="todo">
+                    <span class="task-check" aria-hidden="true"></span>
+                    <div class="task-main">
+                      <p class="task-name">归档 Q3 用户访谈原始记录</p>
+                      <p class="task-meta">
+                        <span class="avatar" aria-hidden="true">李</span>
+                        <span>李婷</span>
+                        <span class="sep">·</span>
+                        <span>今天 18:00</span>
+                      </p>
+                    </div>
+                    <span class="tag tag-todo">待处理</span>
+                  </li>
+                  <li class="task" data-status="doing">
+                    <span class="task-check" aria-hidden="true"></span>
+                    <div class="task-main">
+                      <p class="task-name">重构支付回调的失败重试策略</p>
+                      <p class="task-meta">
+                        <span class="avatar" aria-hidden="true">陈</span>
+                        <span>陈昊</span>
+                        <span class="sep">·</span>
+                        <span>明天</span>
+                        <span class="sep">·</span>
+                        <span>进度 70%</span>
+                      </p>
+                    </div>
+                    <span class="tag tag-doing">进行中</span>
+                  </li>
+                  <li class="task" data-status="doing">
+                    <span class="task-check" aria-hidden="true"></span>
+                    <div class="task-main">
+                      <p class="task-name">新加坡节点灰度放量到 30%</p>
+                      <p class="task-meta">
+                        <span class="avatar" aria-hidden="true">K</span>
+                        <span>Kavi Rao</span>
+                        <span class="sep">·</span>
+                        <span>10/09</span>
+                        <span class="sep">·</span>
+                        <span>进度 40%</span>
+                      </p>
+                    </div>
+                    <span class="tag tag-doing">进行中</span>
+                  </li>
+                  <li class="task" data-status="blocked">
+                    <span class="task-check" aria-hidden="true"></span>
+                    <div class="task-main">
+                      <p class="task-name">与法务确认合同模板 v3 的赔偿条款</p>
+                      <p class="task-meta">
+                        <span class="avatar" aria-hidden="true">王</span>
+                        <span>王慕</span>
+                        <span class="sep">·</span>
+                        <span>已等待 4 天</span>
+                      </p>
+                    </div>
+                    <span class="tag tag-blocked">阻塞</span>
+                  </li>
+                  <li class="task" data-status="doing">
+                    <span class="task-check" aria-hidden="true"></span>
+                    <div class="task-main">
+                      <p class="task-name">官网改版第二屏视觉定稿</p>
+                      <p class="task-meta">
+                        <span class="avatar" aria-hidden="true">苏</span>
+                        <span>苏婉</span>
+                        <span class="sep">·</span>
+                        <span>10/10</span>
+                        <span class="sep">·</span>
+                        <span>进度 85%</span>
+                      </p>
+                    </div>
+                    <span class="tag tag-doing">进行中</span>
+                  </li>
+                  <li class="task" data-status="todo">
+                    <span class="task-check" aria-hidden="true"></span>
+                    <div class="task-main">
+                      <p class="task-name">整理 Q3 OKR 复盘材料</p>
+                      <p class="task-meta">
+                        <span class="avatar" aria-hidden="true">张</span>
+                        <span>张睿</span>
+                        <span class="sep">·</span>
+                        <span>10/12</span>
+                      </p>
+                    </div>
+                    <span class="tag tag-todo">待处理</span>
+                  </li>
+                </ul>
+
+                <p class="empty-hint" id="empty-hint" hidden>该筛选下暂无任务。</p>
+
+                <div class="ai-note">
+                  <p class="ai-label">Orbit AI 建议</p>
+                  <p>
+                    「与法务确认合同模板」已阻塞 4 天，是官网改版的关键路径。
+                    建议把决策会挪到 10/08 上午，并先让 AI 汇总三方分歧点。
+                    <a class="inline-link" href="#features">看它怎么做到</a>
+                  </p>
+                </div>
+              </div>
+
+              <!-- 项目进度 -->
+              <div class="app-col app-col-progress">
+                <div class="app-col-head">
+                  <h3>项目进度</h3>
+                  <p class="app-col-sub">本周 · 4 个项目</p>
+                </div>
+
+                <ul class="progress-list">
+                  <li>
+                    <div class="progress-head">
+                      <p class="progress-name">官网改版</p>
+                      <p class="progress-value">78%</p>
+                    </div>
+                    <div class="bar" role="presentation">
+                      <span class="bar-fill" style="--v: 78%"></span>
+                    </div>
+                    <p class="progress-foot">
+                      <span>剩 6 个任务</span>
+                      <span class="state state-ok">按计划</span>
+                    </p>
+                  </li>
+                  <li>
+                    <div class="progress-head">
+                      <p class="progress-name">移动端 App 3.0</p>
+                      <p class="progress-value">45%</p>
+                    </div>
+                    <div class="bar" role="presentation">
+                      <span class="bar-fill bar-warn" style="--v: 45%"></span>
+                    </div>
+                    <p class="progress-foot">
+                      <span>2 项依赖外部</span>
+                      <span class="state state-risk">有风险</span>
+                    </p>
+                  </li>
+                  <li>
+                    <div class="progress-head">
+                      <p class="progress-name">数据平台迁移</p>
+                      <p class="progress-value">92%</p>
+                    </div>
+                    <div class="bar" role="presentation">
+                      <span class="bar-fill" style="--v: 92%"></span>
+                    </div>
+                    <p class="progress-foot">
+                      <span>剩 1 个验收项</span>
+                      <span class="state state-ok">即将完成</span>
+                    </p>
+                  </li>
+                  <li>
+                    <div class="progress-head">
+                      <p class="progress-name">客户成功手册</p>
+                      <p class="progress-value">30%</p>
+                    </div>
+                    <div class="bar" role="presentation">
+                      <span class="bar-fill" style="--v: 30%"></span>
+                    </div>
+                    <p class="progress-foot">
+                      <span>刚启动 2 周</span>
+                      <span class="state state-ok">按计划</span>
+                    </p>
+                  </li>
+                </ul>
+
+                <div class="week-card">
+                  <p class="ai-label">AI 周报摘要</p>
+                  <ul>
+                    <li>本周完成 23 项，比计划多 2 项。</li>
+                    <li>合同模板是唯一的阻塞项，已影响 3 个项目。</li>
+                    <li>陈昊负载最高，建议新任务优先分配给张睿。</li>
+                  </ul>
+                  <p class="week-foot">生成于今天 07:00 · 无需人工整理</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="preview-caption reveal">
+            界面为示例数据。真实工作区中的任务、负责人与进度来自你的项目和已接入的会议记录。
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ 三个核心功能 ============ -->
+      <section class="section section-alt" id="features">
+        <div class="shell">
+          <div class="section-head reveal">
+            <h2>三件最占用团队时间的事，交给 Orbit</h2>
+            <p>不是再加一个要维护的工具，而是把已有的沟通、记录与汇报自动化。</p>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature reveal">
+              <p class="feature-index">01</p>
+              <h3>自动拆解与分派</h3>
+              <p>
+                写一句目标，Orbit 按成员当前负载和历史专长给出任务拆解建议：谁负责、
+                什么时候交、依赖哪一项。确认后同步到看板与日历，省掉排期会。
+              </p>
+              <p class="feature-proof">排期讨论平均缩短 35 分钟</p>
+            </article>
+
+            <article class="feature reveal">
+              <p class="feature-index">02</p>
+              <h3>会议自动归档并追踪决定</h3>
+              <p>
+                会议结束即生成纪要、决定项和待办，每条决定都回链到对应任务与负责人。
+                两周后仍能查清"当时是谁定的、为什么这样定"。
+              </p>
+              <p class="feature-proof">决定项落地率从 58% 提升到 89%</p>
+            </article>
+
+            <article class="feature reveal">
+              <p class="feature-index">03</p>
+              <h3>进度风险提前浮现</h3>
+              <p>
+                跨项目聚合任务停留时长、阻塞原因与交付节奏，在截止日之前指出最可能
+                延期的环节，让团队有机会调整，而不是事后解释。
+              </p>
+              <p class="feature-proof">平均提前 4.5 天发现延期</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 客户评价 ============ -->
+      <section class="section" id="voices">
+        <div class="shell">
+          <div class="section-head reveal">
+            <h2>团队怎么说</h2>
+            <p>来自研发、产品与咨询行业的一线负责人。</p>
+          </div>
+
+          <div class="quote-grid">
+            <figure class="quote reveal">
+              <blockquote>
+                我们取消了每周例会。进度由 Orbit 每天整理好推给我们，
+                团队只在真正需要判断的时候才聚到一起。
+              </blockquote>
+              <figcaption>
+                <span class="avatar avatar-lg" aria-hidden="true">林</span>
+                <span>
+                  <strong>林可欣</strong>
+                  <em>产品负责人 · 智驰出行（56 人）</em>
+                </span>
+              </figcaption>
+            </figure>
+
+            <figure class="quote reveal">
+              <blockquote>
+                跨时区协作最怕信息断层。现在法务、设计、研发的阻塞项在同一张看板上，
+                谁在等谁一目了然，不用再追人。
+              </blockquote>
+              <figcaption>
+                <span class="avatar avatar-lg" aria-hidden="true">郑</span>
+                <span>
+                  <strong>郑毅</strong>
+                  <em>工程总监 · Northwind 金融科技（180 人）</em>
+                </span>
+              </figcaption>
+            </figure>
+
+            <figure class="quote reveal">
+              <blockquote>
+                新同事第一周就能独立领任务，因为上下文都写在任务里，
+                而不是装在老员工的脑子里。
+              </blockquote>
+              <figcaption>
+                <span class="avatar avatar-lg" aria-hidden="true">苏</span>
+                <span>
+                  <strong>苏婉</strong>
+                  <em>首席人力官 · 恒宇医疗集团（320 人）</em>
+                </span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 三档价格 ============ -->
+      <section class="section section-alt" id="pricing">
+        <div class="shell">
+          <div class="section-head reveal">
+            <h2>按人头计费，随时升档</h2>
+            <p>所有档位都包含任务看板、项目进度与 14 天免费试用，不需要信用卡。</p>
+          </div>
+
+          <div class="billing-toggle reveal">
+            <div class="switch" role="group" aria-label="计费周期">
+              <button
+                type="button"
+                class="switch-btn is-active"
+                id="cycle-month"
+                aria-pressed="true"
+                data-cycle="month"
+              >
+                按月付费
+              </button>
+              <button
+                type="button"
+                class="switch-btn"
+                id="cycle-year"
+                aria-pressed="false"
+                data-cycle="year"
+              >
+                按年付费
+              </button>
+            </div>
+            <p class="save-hint" id="save-hint">切换按年，每人每月省 20%</p>
+          </div>
+
+          <div class="price-grid" id="price-grid">
+            <article class="plan reveal">
+              <h3>起步版</h3>
+              <p class="plan-desc">15 人以内的团队，先把节奏跑起来。</p>
+              <p class="plan-price" data-month="68" data-year="54">
+                <span class="currency">¥</span>
+                <span class="amount">68</span>
+                <span class="per">/人/月</span>
+              </p>
+              <p class="plan-bill">按月计费，随时取消</p>
+              <ul class="plan-list">
+                <li>任务看板与项目进度</li>
+                <li>AI 任务拆解每月 200 次</li>
+                <li>会议摘要每月 30 场</li>
+                <li>社区与工单支持</li>
+              </ul>
+              <button class="btn btn-line btn-block" type="button" data-demo-open>
+                免费试用 14 天
+              </button>
+            </article>
+
+            <article class="plan plan-featured reveal">
+              <p class="plan-flag">最受欢迎</p>
+              <h3>商业版</h3>
+              <p class="plan-desc">跨部门协作，需要权限与风险视图。</p>
+              <p class="plan-price" data-month="128" data-year="102">
+                <span class="currency">¥</span>
+                <span class="amount">128</span>
+                <span class="per">/人/月</span>
+              </p>
+              <p class="plan-bill">按月计费，随时取消</p>
+              <ul class="plan-list">
+                <li>包含起步版全部能力</li>
+                <li>AI 拆解与会议摘要不限量</li>
+                <li>跨项目风险预警与负载视图</li>
+                <li>SSO 登录与角色权限</li>
+                <li>4 小时内响应的优先支持</li>
+              </ul>
+              <button class="btn btn-accent btn-block" type="button" data-demo-open>
+                预约演示体验
+              </button>
+            </article>
+
+            <article class="plan reveal">
+              <h3>企业版</h3>
+              <p class="plan-desc">200 人以上，或有私有化与合规要求。</p>
+              <p class="plan-price plan-price-text">
+                <span class="amount amount-text">定制</span>
+                <span class="per">按规模报价</span>
+              </p>
+              <p class="plan-bill">年度合同，含实施支持</p>
+              <ul class="plan-list">
+                <li>包含商业版全部能力</li>
+                <li>私有化部署或专属集群</li>
+                <li>99.95% 可用性 SLA</li>
+                <li>审计日志与合规报告</li>
+                <li>专属客户成功经理</li>
+              </ul>
+              <button class="btn btn-line btn-block" type="button" data-demo-open>
+                联系方案顾问
+              </button>
+            </article>
+          </div>
+
+          <p class="price-note reveal">
+            试用期内不扣费；中途增减成员按剩余天数折算。教育与公益组织可申请 50% 折扣。
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ 常见问题 ============ -->
+      <section class="section" id="faq">
+        <div class="shell shell-narrow">
+          <div class="section-head reveal">
+            <h2>常见问题</h2>
+            <p>还有其他疑问？<button class="inline-link" type="button" data-demo-open>预约一次演示</button>，我们按你们的实际流程走一遍。</p>
+          </div>
+
+          <div class="faq-list" id="faq-list">
+            <div class="faq-item reveal">
+              <h3>
+                <button
+                  class="faq-q"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="faq-a1"
+                  id="faq-q1"
+                >
+                  <span>Orbit 的 AI 会拿我们的项目数据去训练模型吗？</span>
+                  <span class="faq-icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1" hidden>
+                <div class="faq-a-inner">
+                  <p>
+                    不会。你的任务、文档与会议内容只用于在当前工作区内生成结果，默认不进入任何模型训练流程。
+                    企业版可以选择只调用部署在你自己环境内的模型，或关闭 AI 功能而保留看板与进度能力。
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item reveal">
+              <h3>
+                <button
+                  class="faq-q"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="faq-a2"
+                  id="faq-q2"
+                >
+                  <span>我们已经在用 Jira、Teambition 或飞书项目，还能一起用吗？</span>
+                  <span class="faq-icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="faq-a" id="faq-a2" role="region" aria-labelledby="faq-q2" hidden>
+                <div class="faq-a-inner">
+                  <p>
+                    可以。Orbit 支持与这些工具双向同步任务和状态，团队日常仍在原有系统里操作，
+                    由 Orbit 负责跨项目的进度聚合、阻塞识别与纪要归档。也提供导入接口，
+                    可把历史任务一次性迁移进来作为上下文。
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item reveal">
+              <h3>
+                <button
+                  class="faq-q"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="faq-a3"
+                  id="faq-q3"
+                >
+                  <span>团队只有七八个人，值得上协作平台吗？</span>
+                  <span class="faq-icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3" hidden>
+                <div class="faq-a-inner">
+                  <p>
+                    小团队的痛点通常不是"人多管不住"，而是每个人同时兼好几件事、上下文散落。
+                    起步版按人头计费、五分钟建好工作区，适合先解决"谁在等什么"这一件事。
+                    若一年内在 15 人以下，起步版通常就够用。
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item reveal">
+              <h3>
+                <button
+                  class="faq-q"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="faq-a4"
+                  id="faq-q4"
+                >
+                  <span>会议摘要支持哪些语言和会议软件？</span>
+                  <span class="faq-icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4" hidden>
+                <div class="faq-a-inner">
+                  <p>
+                    中文与英文识别准确率最高，另支持日语、韩语和粤语混合发言。
+                    可接入腾讯会议、飞书会议、Zoom 与 Google Meet，
+                    也支持上传录音或文字稿直接生成纪要与决定项。
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item reveal">
+              <h3>
+                <button
+                  class="faq-q"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="faq-a5"
+                  id="faq-q5"
+                >
+                  <span>如果以后不再使用，数据能完整导出吗？</span>
+                  <span class="faq-icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="faq-a" id="faq-a5" role="region" aria-labelledby="faq-q5" hidden>
+                <div class="faq-a-inner">
+                  <p>
+                    任何档位都可一键导出任务、评论、附件与纪要为 JSON 与 CSV，附件按原格式打包。
+                    合同到期后数据保留 90 天供下载，之后按你的选择彻底删除并出具删除确认。
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item reveal">
+              <h3>
+                <button
+                  class="faq-q"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="faq-a6"
+                  id="faq-q6"
+                >
+                  <span>怎么计费？月中来人和离人怎么处理？</span>
+                  <span class="faq-icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="faq-a" id="faq-a6" role="region" aria-labelledby="faq-q6" hidden>
+                <div class="faq-a-inner">
+                  <p>
+                    按实际启用的成员数计费。月中新激活的成员按剩余天数折算；停用的账号从当期账单中扣除，
+                    不占用下一周期名额。支持开具增值税专用发票，可对公转账。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 结尾行动区 ============ -->
+      <section class="closing">
+        <div class="shell closing-inner reveal">
+          <h2>先让 Orbit 跑你们最乱的那个项目</h2>
+          <p>45 分钟演示，我们照你们的真实流程配置一个工作区，结束后工作区归你保留 30 天。</p>
+          <button class="btn btn-accent btn-lg" type="button" data-demo-open>
+            预约演示体验
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ 页脚 ============ -->
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div class="footer-brand">
+          <a class="wordmark" href="#top" aria-label="返回页面顶部">
+            <span class="wordmark-mark" aria-hidden="true"></span>
+            <span class="wordmark-text">Orbit</span>
+          </a>
+          <p>AI 团队协作平台。把同步交给机器，把判断留给人。</p>
+        </div>
+
+        <nav class="footer-links" aria-label="页脚导航">
+          <h3>页面</h3>
+          <a href="#preview">产品预览</a>
+          <a href="#features">核心功能</a>
+          <a href="#pricing">价格</a>
+          <a href="#faq">常见问题</a>
+        </nav>
+
+        <div class="footer-links">
+          <h3>开始使用</h3>
+          <button class="link-btn" type="button" data-demo-open>预约演示体验</button>
+          <a href="mailto:hi@orbit.team">写信给我们</a>
+          <a href="#top">回到顶部</a>
+        </div>
+      </div>
+      <div class="shell footer-bottom">
+        <p>© 2026 Orbit Team · 产品演示站点</p>
+        <p>页面中的数据与客户名称均为示例</p>
+      </div>
+    </footer>
+
+    <!-- ============ 演示预约表单 ============ -->
+    <div class="modal" id="demo-modal" hidden>
+      <div class="modal-backdrop" data-modal-close></div>
+      <div
+        class="modal-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="demo-title"
+        tabindex="-1"
+      >
+        <button class="modal-close" type="button" data-modal-close aria-label="关闭演示预约表单">
+          <span aria-hidden="true"></span>
+        </button>
+
+        <div class="modal-body" id="demo-form-view">
+          <h2 id="demo-title">预约演示</h2>
+          <p class="modal-sub">
+            留下几项信息，我们会在 1 个工作日内联系你，按团队实际流程安排一次 45 分钟的演示。
+          </p>
+
+          <form id="demo-form" novalidate>
+            <div class="field-grid">
+              <div class="field">
+                <label for="f-name">姓名 <span class="req">必填</span></label>
+                <input
+                  id="f-name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="如：李婷"
+                  aria-describedby="e-name"
+                />
+                <p class="field-error" id="e-name"></p>
+              </div>
+
+              <div class="field">
+                <label for="f-company">公司或团队名称 <span class="req">必填</span></label>
+                <input
+                  id="f-company"
+                  name="company"
+                  type="text"
+                  autocomplete="organization"
+                  placeholder="如：智驰出行 产品中心"
+                  aria-describedby="e-company"
+                />
+                <p class="field-error" id="e-company"></p>
+              </div>
+
+              <div class="field">
+                <label for="f-email">工作邮箱 <span class="req">必填</span></label>
+                <input
+                  id="f-email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  inputmode="email"
+                  placeholder="name@company.com"
+                  aria-describedby="e-email"
+                />
+                <p class="field-error" id="e-email"></p>
+              </div>
+
+              <div class="field">
+                <label for="f-size">团队规模 <span class="req">必填</span></label>
+                <select id="f-size" name="size" aria-describedby="e-size">
+                  <option value="">请选择</option>
+                  <option value="15 人以下">15 人以下</option>
+                  <option value="16–60 人">16–60 人</option>
+                  <option value="61–200 人">61–200 人</option>
+                  <option value="200 人以上">200 人以上</option>
+                </select>
+                <p class="field-error" id="e-size"></p>
+              </div>
+
+              <div class="field">
+                <label for="f-slot">方便的时间段</label>
+                <select id="f-slot" name="slot">
+                  <option value="工作日 10:00–12:00">工作日 10:00–12:00</option>
+                  <option value="工作日 14:00–17:00">工作日 14:00–17:00</option>
+                  <option value="工作日 19:00 以后">工作日 19:00 以后</option>
+                  <option value="周末皆可">周末皆可</option>
+                </select>
+              </div>
+
+              <div class="field field-wide">
+                <label for="f-note">想重点看什么（选填）</label>
+                <textarea
+                  id="f-note"
+                  name="note"
+                  rows="3"
+                  maxlength="200"
+                  placeholder="如：我们同时跑 8 个项目，最想看跨项目阻塞是怎么暴露出来的。"
+                ></textarea>
+                <p class="counter"><span id="note-count">0</span>/200</p>
+              </div>
+            </div>
+
+            <p class="form-error" id="form-error" role="alert" hidden>
+              还有几项需要补充，请查看下方标出的字段。
+            </p>
+
+            <div class="form-actions">
+              <button class="btn btn-accent btn-lg btn-block" type="submit">
+                提交预约
+              </button>
+              <p class="form-privacy">提交即表示同意我们通过邮件与你联系，信息不用于其他用途。</p>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-body result-view" id="demo-result-view" hidden>
+          <p class="result-badge">提交成功</p>
+          <h2>已收到你的演示预约</h2>
+          <p class="modal-sub" id="result-line">我们会在 1 个工作日内通过邮件确认时间。</p>
+          <dl class="result-list" id="result-list"></dl>
+          <div class="result-actions">
+            <button class="btn btn-line" type="button" id="result-again">再提交一份</button>
+            <button class="btn btn-accent" type="button" data-modal-close>完成</button>
+          </div>
+          <p class="result-note">
+            当前为演示站点，表单只在浏览器内校验并展示结果，未发送到服务器。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>一笔下单要换算多少张：金额、杠杆与 USDT · 交易 · 沈沉思个人站</title>
+    <meta
+      name="description"
+      content="按金额下单时，张数换算里杠杆是放大因子而不是除数。这篇写我把杠杆放错边的过程、单位口径怎么定成 USDT，以及换算之后还必须做的事。"
+    />
+    <meta name="theme-color" content="#060B1B" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="./favicon.ico" />
+    <link rel="apple-touch-icon" href="./favicon.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="reading-bar" aria-hidden="true"></div>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="site-header" id="top">
+      <div class="shell header-inner">
+        <a class="wordmark" href="./index.html" aria-label="返回个人站首页">
+          <span class="wordmark-mark" aria-hidden="true"></span>
+          <span class="wordmark-text">沈沉思</span>
+        </a>
+
+        <nav class="primary-nav" id="primary-nav" aria-label="主导航">
+          <a href="./index.html#panel">近况</a>
+          <a href="./index.html#shelf">板块</a>
+          <a href="./notes.html" class="is-current">记录</a>
+          <a href="./logs.html">日志</a>
+          <a href="./shares.html">分享</a>
+          <a href="./about.html">关于</a>
+        </nav>
+
+        <div class="header-actions">
+          <a class="btn btn-accent btn-sm" href="./contact.html">写信给我</a>
+          <button
+            class="nav-toggle"
+            type="button"
+            id="nav-toggle"
+            aria-controls="primary-nav"
+            aria-expanded="false"
+          >
+            <span class="nav-toggle-bars" aria-hidden="true"></span>
+            <span class="sr-only">菜单</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <article class="post">
+        <header class="post-head">
+          <div class="shell shell-narrow">
+            <p class="crumbs">
+              <a href="./index.html">首页</a>
+              <span class="sep">/</span>
+              <a href="./notes.html">全部记录</a>
+              <span class="sep">/</span>
+              <a href="./notes.html?cat=trade">交易</a>
+            </p>
+
+            <span class="cat cat-trade">交易</span>
+            <h1>一笔下单要换算多少张：金额、杠杆与 USDT</h1>
+
+            <div class="post-meta">
+              <time datetime="2026-10-06">2026-10-06</time>
+              <span class="sep">·</span>
+              <span>约 6 分钟</span>
+              <span class="sep">·</span>
+              <span>仓位管理 · 永续合约 · 单位口径</span>
+            </div>
+
+            <nav class="toc" aria-label="本页目录">
+              <p class="ai-label">本页目录</p>
+              <ol>
+                <li><a href="#symptom">现象：仓位比预期大一截</a></li>
+                <li><a href="#wrong">我把杠杆放错了边</a></li>
+                <li><a href="#formula">换算式与取整</a></li>
+                <li><a href="#unit">单位必须写死成 USDT</a></li>
+                <li><a href="#after">算出张数之后还有三件事</a></li>
+              </ol>
+            </nav>
+          </div>
+        </header>
+
+        <div class="shell">
+          <div class="prose">
+            <p class="draft-note">
+              <strong>占位示例正文</strong>
+              交易口径类文章的排版演示：现象、错误推导、正确推导、约束四段。
+              公式按永续合约通用形式写，实际参数以交易所返回的合约规格为准。
+            </p>
+
+            <p class="lead">
+              策略配置里我希望这样表达意图：「这次开 200 USDT」。
+              但交易所要的是张数。从「200」到「几张」只有一步换算，
+              我却在这一步上把实际仓位算大了一截。
+            </p>
+
+            <h2 id="symptom">现象：仓位比预期大一截</h2>
+            <p>
+              日志里显示配置 200 USDT，实际持仓的名义价值接近两千。
+              第一眼以为价格取错了，第二次看才发现是张数换算的方向反了——
+              我在需要乘杠杆的地方除了杠杆。
+            </p>
+            <ul>
+              <li>报错的声音一点都没有：交易所认为这个数量完全合法。</li>
+              <li>只在高杠杆品种上明显，低杠杆品种偏差小到看不出来。</li>
+              <li>策略盈亏看起来仍然「合理」，因为它确实按实际仓位在算。</li>
+            </ul>
+
+            <blockquote>
+              <p>
+                换算类的错误最危险的地方是：它不报错，只是把你的意图放大或缩小若干倍，
+                然后安静地跑下去。
+              </p>
+            </blockquote>
+
+            <h2 id="wrong">我把杠杆放错了边</h2>
+            <p>
+              错误的直觉来自这句话：「杠杆越高，同样保证金能开的仓位越大」。
+              这句话说的是<strong>保证金能撑起的名义价值</strong>，
+              我却在实现时把它读成了「杠杆越高，需要的张数越少」。
+            </p>
+
+            <pre><code># 错的：把杠杆当除数
+qty = amount / (price * unit) / leverage
+
+# 对的：金额是保证金口径，杠杆把它放大成名义价值
+qty = amount * leverage / (price * unit)</code></pre>
+            <p class="code-cap">
+              <code>amount</code> 是投入金额（USDT），<code>price</code> 是成交价，
+              <code>unit</code> 是每张合约的币本位面值，<code>qty</code> 是下单张数。
+            </p>
+
+            <p>
+              两种写法在 <code>leverage = 1</code> 时结果相同，
+              这也是它能在测试里活那么久的原因。
+            </p>
+
+            <h2 id="formula">换算式与取整</h2>
+            <p>确定公式之后，还剩两个必须写清楚的小问题。</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>问题</th>
+                  <th>我的处理</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>算出来不是整数张</td>
+                  <td>向下取整。宁可少开一张，也不要超出配置意图</td>
+                </tr>
+                <tr>
+                  <td>价格用哪个</td>
+                  <td>用即将成交参考价，并在日志里打出这个价，事后能复算</td>
+                </tr>
+                <tr>
+                  <td>面值变了怎么办</td>
+                  <td>下单前用交易所返回的合约规格重算，不用本地缓存的常量</td>
+                </tr>
+                <tr>
+                  <td>算出来是 0 张</td>
+                  <td>直接拒绝下单并告警，而不是让交易所报参数错误</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h2 id="unit">单位必须写死成 USDT</h2>
+            <p>
+              配置项里那个「开仓数量」到底指什么？早期我没写单位，
+              自己都在「USDT 金额」和「币的数量」之间反复看过两次。
+              后来把默认单位钉成 USDT，前端标注、后端校验、日志输出三处同时带上单位。
+            </p>
+            <ol>
+              <li>字段名和界面文案都带单位，不靠上下文猜。</li>
+              <li>后端做权威校验，前端只做明显误填的拦截，两边都要有。</li>
+              <li>价格类字段渲染前统一走格式化函数，避免出现八位小数。</li>
+            </ol>
+
+            <h2 id="after">算出张数之后还有三件事</h2>
+            <p>
+              换算只是把意图变成参数，离「安全地下这一单」还差三层：
+              单笔是否超过品种限制、当前持仓加上这一笔是否超总上限、
+              失败时是按参数错误还是按连接错误处理。
+            </p>
+            <div class="ai-note">
+              <p class="ai-label">还没补上的洞</p>
+              <p>
+                全账户持仓上限这个配置项存在，但下单路径没有读它。
+                这类「看着有其实没用」的防线，比没有防线更危险——它让我以为自己在管风险。
+              </p>
+            </div>
+
+            <p class="post-foot">
+              <span>分类：交易 · 标签：仓位 / 换算 / 校验</span>
+              <span>最后更新 2026-10-06</span>
+            </p>
+          </div>
+
+          <nav class="pager" aria-label="相邻文章">
+            <a class="pager-card" href="./note-kline-http2.html">
+              <span class="pager-label">更早的一篇 · 工作</span>
+              <span class="pager-title">一条 HTTP/2 长连接，卡了我三天</span>
+            </a>
+            <a class="pager-card is-next" href="./note-market-regime.html">
+              <span class="pager-label">更新的一篇 · 学习</span>
+              <span class="pager-title">12 级市场状态是怎么定下来的</span>
+            </a>
+          </nav>
+        </div>
+      </article>
+
+      <section class="closing">
+        <div class="shell closing-inner reveal">
+          <h2>交易板块还有三篇没写</h2>
+          <p>
+            双仓位为什么必须隔离、500 张上限怎么接进拦截、
+            手动平仓检测为什么要排在对账之前——都排在队列里。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-accent btn-lg" href="./notes.html?cat=trade">看交易板块</a>
+            <a class="btn btn-ghost btn-lg" href="./contact.html">我有不同做法</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div class="footer-brand">
+          <a class="wordmark" href="./index.html" aria-label="返回首页">
+            <span class="wordmark-mark" aria-hidden="true"></span>
+            <span class="wordmark-text">沈沉思</span>
+          </a>
+          <p>个人站。学习、交易、工作、项目、探索，五摊事，想到就记。</p>
+          <p class="footer-note">最后更新 2026-10-08</p>
+        </div>
+
+        <nav class="footer-links" aria-label="页脚板块导航">
+          <h3>板块</h3>
+          <a href="./notes.html?cat=study">学习</a>
+          <a href="./notes.html?cat=trade">交易</a>
+          <a href="./notes.html?cat=work">工作</a>
+          <a href="./notes.html?cat=project">项目</a>
+          <a href="./notes.html?cat=explore">探索</a>
+        </nav>
+
+        <div class="footer-links">
+          <h3>内容</h3>
+          <a href="./notes.html">全部记录</a>
+          <a href="./logs.html">全部日志</a>
+          <a href="./shares.html">全部分享</a>
+          <a href="./about.html">关于我</a>
+          <a href="./contact.html">写信给我</a>
+          <a href="#top">回到顶部</a>
+        </div>
+      </div>
+      <div class="shell footer-bottom">
+        <p>© 2026 沈沉思 · 个人站</p>
+        <p>站内文字、数字与文章为占位示例，替换后即正式版</p>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

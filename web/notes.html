@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>全部记录 · 沈沉思个人站</title>
+    <meta
+      name="description"
+      content="沈沉思个人站的全部长文记录：学习、交易、工作、项目、探索五个分类，可按分类筛选，支持 notes.html?cat=trade 之类的直达链接。"
+    />
+    <meta name="theme-color" content="#060B1B" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="./favicon.ico" />
+    <link rel="apple-touch-icon" href="./favicon.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <!-- ============ 顶部导航 ============ -->
+    <header class="site-header" id="top">
+      <div class="shell header-inner">
+        <a class="wordmark" href="./index.html" aria-label="返回个人站首页">
+          <span class="wordmark-mark" aria-hidden="true"></span>
+          <span class="wordmark-text">沈沉思</span>
+        </a>
+
+        <nav class="primary-nav" id="primary-nav" aria-label="主导航">
+          <a href="./index.html#panel">近况</a>
+          <a href="./index.html#shelf">板块</a>
+          <a href="./notes.html" class="is-current">记录</a>
+          <a href="./logs.html">日志</a>
+          <a href="./shares.html">分享</a>
+          <a href="./about.html">关于</a>
+        </nav>
+
+        <div class="header-actions">
+          <a class="btn btn-accent btn-sm" href="./contact.html">写信给我</a>
+          <button
+            class="nav-toggle"
+            type="button"
+            id="nav-toggle"
+            aria-controls="primary-nav"
+            aria-expanded="false"
+          >
+            <span class="nav-toggle-bars" aria-hidden="true"></span>
+            <span class="sr-only">菜单</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ============ 内页标题 ============ -->
+      <section class="page-head">
+        <div class="shell">
+          <p class="crumbs">
+            <a href="./index.html">首页</a>
+            <span class="sep">/</span>
+            <span>全部记录</span>
+          </p>
+          <h1>全部记录</h1>
+          <p class="page-lede">
+            五个分类都在这一页，长文才进这里，一天的动作进日志，别人的东西进分享。
+            已经写完正文的 6 篇可以点开看，剩下的是排了队还没写的选题。
+          </p>
+          <p class="chip-row">
+            <a class="chip" href="./logs.html">短日志在这里</a>
+            <a class="chip" href="./shares.html">分享在这里</a>
+            <a class="chip" href="./about.html">关于我</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ 列表 + 分类筛选 ============ -->
+      <section class="section">
+        <div class="shell">
+          <div class="list-toolbar reveal">
+            <div class="filters" role="tablist" aria-label="按板块筛选">
+              <button
+                class="filter is-active"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                data-cat="all"
+              >
+                全部 <span class="count">21</span>
+              </button>
+              <button
+                class="filter"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-cat="study"
+              >
+                学习 <span class="count">4</span>
+              </button>
+              <button
+                class="filter"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-cat="trade"
+              >
+                交易 <span class="count">4</span>
+              </button>
+              <button
+                class="filter"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-cat="work"
+              >
+                工作 <span class="count">5</span>
+              </button>
+              <button
+                class="filter"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-cat="project"
+              >
+                项目 <span class="count">4</span>
+              </button>
+              <button
+                class="filter"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-cat="explore"
+              >
+                探索 <span class="count">4</span>
+              </button>
+            </div>
+            <p class="list-count" id="list-count">全部 21 篇</p>
+          </div>
+
+          <p class="draft-note reveal">
+            <strong>占位内容说明</strong>
+            下面 6 篇已写好正文（可点开看长文排版），另外 15 条是排了队的选题，
+            标着「待写」。新增一篇 = 复制一份 note-*.html，再在这里加一行。
+          </p>
+
+          <div class="post-list">
+            <!-- ------------------------------ 项目 ------------------------------ -->
+            <article class="post-row" data-cat="project">
+              <p class="post-date">2026-10-08</p>
+              <div class="post-main">
+                <a class="post-title" href="./note-merge-migration.html">
+                  把三个市场并成一个应用，分七步走
+                </a>
+                <p class="post-excerpt">
+                  期货、股票、K 线训练各自都是独立项目，合进来最难的不是搬代码，
+                  而是同名模块、模板遮蔽和端口这些「谁覆盖谁」的问题。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-project">项目</span>
+                  <span class="post-read">约 9 分钟</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <a class="btn btn-ghost btn-sm" href="./note-merge-migration.html">读这篇</a>
+              </div>
+            </article>
+
+            <article class="post-row" data-cat="project">
+              <p class="post-date">待写</p>
+              <div class="post-main">
+                <span class="post-title">导航做成数据驱动：分类、拖拽与跨设备同步</span>
+                <p class="post-excerpt">
+                  十六个页面排成一行会挤爆，于是把导航拆成「分类 + 链接」两层，
+                  配置能拖、能存、能同步，还得保证没有 JS 时页面照样可达。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-project">项目</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <span class="tag tag-todo">待写</span>
+              </div>
+            </article>
+
+            <article class="post-row" data-cat="project">
+              <p class="post-date">待写</p>
+              <div class="post-main">
+                <span class="post-title">MySQL 权威源 + 文件兜底：存储架构为什么这样选</span>
+                <p class="post-excerpt">
+                  一开始全是文件，后来任务计划进数据库，再后来三个市场并进来。
+                  每次改的都不是技术，是「数据出错时我怎么恢复」。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-project">项目</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <span class="tag tag-todo">待写</span>
+              </div>
+            </article>
+
+            <article class="post-row" data-cat="project">
+              <p class="post-date">待写</p>
+              <div class="post-main">
+                <span class="post-title">随笔复盘：为什么越简单的模型越难做</span>
+                <p class="post-excerpt">
+                  参数少的模型要求你对市场结构理解更准。这个模块做了快速记录、
+                  时间线、经验沉淀三件事，最难的是逼自己写「下次怎么做」。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-project">项目</span>
+                  <span class="cat cat-study">学习</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <span class="tag tag-todo">待写</span>
+              </div>
+            </article>
+
+            <!-- ------------------------------ 学习 ------------------------------ -->
+            <article class="post-row" data-cat="study">
+              <p class="post-date">2026-10-07</p>
+              <div class="post-main">
+                <a class="post-title" href="./note-market-regime.html">
+                  12 级市场状态是怎么定下来的
+                </a>
+                <p class="post-excerpt">
+                  把行情切成 12 种状态听起来很整齐，真正难的是相邻状态之间那条边界怎么判。
+                  这篇写我最后留下的条件和被砍掉的理由。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-study">学习</span>
+                  <span class="post-read">约 8 分钟</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <a class="btn btn-ghost btn-sm" href="./note-market-regime.html">读这篇</a>
+              </div>
+            </article>
+
+            <article class="post-row" data-cat="study">
+              <p class="post-date">待写</p>
+              <div class="post-main">
+                <span class="post-title">SAR 与 MACD 同时说话时，我该听谁</span>
+                <p class="post-excerpt">
+                  两套指标描述同一段趋势经常给出相反答案。这篇整理我在什么条件下认 SAR、
+                  什么条件下认 MACD，以及两边都不认的时候怎么办。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-study">学习</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <span class="tag tag-todo">待写</span>
+              </div>
+            </article>
+
+            <article class="post-row" data-cat="study">
+              <p class="post-date">待写</p>
+              <div class="post-main">
+                <span class="post-title">ATR% 的口径该统一一次</span>
+                <p class="post-excerpt">
+                  三个模块里各算各的波动率，结果同一个币在两个页面显示的风险不一样。
+                  分母选价格还是选保证金，这不是小事。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-study">学习</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <span class="tag tag-todo">待写</span>
+              </div>
+            </article>
+
+            <article class="post-row" data-cat="study">
+              <p class="post-date">待写</p>
+              <div class="post-main">
+                <span class="post-title">效率系数：把「这段行情有多顺」变成一个数</span>
+                <p class="post-excerpt">
+                  净位移除以总路程，概念一句话，难的是窗口长度怎么选、
+                  以及在震荡里它几乎永远贴地。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-study">学习</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <span class="tag tag-todo">待写</span>
+              </div>
+            </article>
+
+            <!-- ------------------------------ 交易 ------------------------------ -->
+            <article class="post-row" data-cat="trade">
+              <p class="post-date">2026-10-06</p>
+              <div class="post-main">
+                <a class="post-title" href="./note-trade-sizing.html">
+                  一笔下单要换算多少张：金额、杠杆与 USDT
+                </a>
+                <p class="post-excerpt">
+                  「开 200 USDT」到「下几张合约」之间只有一步乘法，但我把杠杆放错了边，
+                  直到实际仓位比预期大一截才发现。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-trade">交易</span>
+                  <span class="post-read">约 6 分钟</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <a class="btn btn-ghost btn-sm" href="./note-trade-sizing.html">读这篇</a>
+              </div>
+            </article>
+
+            <article class="post-row" data-cat="trade">
+              <p class="post-date">待写</p>
+              <div class="post-main">
+                <span class="post-title">双仓位隔离：趋势仓和震荡仓为什么不能互相挪用</span>
+                <p class="post-excerpt">
+                  两套逻辑共用一个仓位，赚了不知道是谁的，亏了也不知道该关哪个。
+                  分开之后多出来的麻烦，远小于混在一起时的误判。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-trade">交易</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <span class="tag tag-todo">待写</span>
+              </div>
+            </article>
+
+            <article class="post-row" data-cat="trade">
+              <p class="post-date">待写</p>
+              <div class="post-main">
+                <span class="post-title">全账户 500 张上限，为什么还没接进下单拦截</span>
+                <p class="post-excerpt">
+                  配置里有这个数，下单路径却没读它。这种「看着有其实没用」的防线，
+                  比没有防线更危险。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-trade">交易</span>
+                  <span class="cat cat-work">工作</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <span class="tag tag-todo">待写</span>
+              </div>
+            </article>
+
+            <article class="post-row" data-cat="trade">
+              <p class="post-date">待写</p>
+              <div class="post-main">
+                <span class="post-title">手动平仓的检测，必须排在对账之前</span>
+                <p class="post-excerpt">
+                  顺序反过来一次，账面上就会出现一笔「凭空消失」的盈亏。
+                  步骤顺序在这种系统里不是风格问题。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-trade">交易</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <span class="tag tag-todo">待写</span>
+              </div>
+            </article>
+
+            <!-- ------------------------------ 工作 ------------------------------ -->
+            <article class="post-row" data-cat="work">
+              <p class="post-date">2026-10-05</p>
+              <div class="post-main">
+                <a class="post-title" href="./note-kline-http2.html">
+                  一条 HTTP/2 长连接，卡了我三天
+                </a>
+                <p class="post-excerpt">
+                  K 线拉取时断时续，报错信息是空的。问题不在策略里，
+                  在 SDK 怎么复用连接、超时没设，以及「异常消息为空」到底意味着什么。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-work">工作</span>
+                  <span class="post-read">约 6 分钟</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <a class="btn btn-ghost btn-sm" href="./note-kline-http2.html">读这篇</a>
+              </div>
+            </article>
+
+            <article class="post-row" data-cat="work">
+              <p class="post-date">待写</p>
+              <div class="post-main">
+                <span class="post-title">RSS 一直涨但 Python 对象没涨：内存碎片化的一天</span>
+                <p class="post-excerpt">
+                  多线程服务跑两天内存就翻几倍，GC 统计一切正常。
+                  最后是用环境变量和代码级两种修法换到的清净，各有代价。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-work">工作</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <span class="tag tag-todo">待写</span>
+              </div>
+            </article>
+
+            <article class="post-row" data-cat="work">
+              <p class="post-date">待写</p>
+              <div class="post-main">
+                <span class="post-title">宝塔、venv 与 host=0.0.0.0：部署三连坑</span>
+                <p class="post-excerpt">
+                  依赖装在外部环境里、Flask 只监听 127.0.0.1、安全组还没放行——
+                  三个问题叠在一起，看起来像「服务起不来」。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-work">工作</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <span class="tag tag-todo">待写</span>
+              </div>
+            </article>
+
+            <article class="post-row" data-cat="work">
+              <p class="post-date">待写</p>
+              <div class="post-main">
+                <span class="post-title">signal 只能在主线程注册：Web 框架里起后台任务的代价</span>
+                <p class="post-excerpt">
+                  本地跑得好好的定时任务，一进 Flask 就报 ValueError。
+                  原因不在调度库，在于我用了一种依赖主线程的写法。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-work">工作</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <span class="tag tag-todo">待写</span>
+              </div>
+            </article>
+
+            <article class="post-row" data-cat="work">
+              <p class="post-date">待写</p>
+              <div class="post-main">
+                <span class="post-title">写进文件的中文，读出来是乱码</span>
+                <p class="post-excerpt">
+                  JSON 持久化和终端输出各有一套默认编码，Windows 上尤其明显。
+                  后来定成规矩：所有文件读写都显式写 utf-8。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-work">工作</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <span class="tag tag-todo">待写</span>
+              </div>
+            </article>
+
+            <!-- ------------------------------ 探索 ------------------------------ -->
+            <article class="post-row" data-cat="explore">
+              <p class="post-date">2026-10-02</p>
+              <div class="post-main">
+                <a class="post-title" href="./note-night-run.html">
+                  夜跑到第 21 天：让打卡不需要意志力
+                </a>
+                <p class="post-excerpt">
+                  前三次都没超过十天。这次换了个办法：不谈目标，只设最低门槛，
+                  并且把「今天没跑」写成一条记录，而不是失败。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-explore">探索</span>
+                  <span class="post-read">约 4 分钟</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <a class="btn btn-ghost btn-sm" href="./note-night-run.html">读这篇</a>
+              </div>
+            </article>
+
+            <article class="post-row" data-cat="explore">
+              <p class="post-date">2026-09-28</p>
+              <div class="post-main">
+                <a class="post-title" href="./note-four-films.html">
+                  今年看完的四部片子，讲的是一件事
+                </a>
+                <p class="post-excerpt">
+                  看完才发现它们都在问同一个问题：一个人能把自己骗到什么程度。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-explore">探索</span>
+                  <span class="post-read">约 5 分钟</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <a class="btn btn-ghost btn-sm" href="./note-four-films.html">读这篇</a>
+              </div>
+            </article>
+
+            <article class="post-row" data-cat="explore">
+              <p class="post-date">待写</p>
+              <div class="post-main">
+                <span class="post-title">K 线盲测：把自己当陌生人来出题</span>
+                <p class="post-excerpt">
+                  把历史行情遮住时间戳和币种名，只给一根根走。
+                  第一次做完最大的收获是：我根本认不出自己写过策略的那种行情。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-explore">探索</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <span class="tag tag-todo">待写</span>
+              </div>
+            </article>
+
+            <article class="post-row" data-cat="explore">
+              <p class="post-date">待写</p>
+              <div class="post-main">
+                <span class="post-title">热量缺口与支出管理：两个 CSV 撑起的小事</span>
+                <p class="post-excerpt">
+                  没有用任何 App，一张表记吃进去的，一张表记花出去的。
+                  之所以坚持得下来，是因为填一行不超过二十秒。
+                </p>
+                <p class="post-tags">
+                  <span class="cat cat-explore">探索</span>
+                </p>
+              </div>
+              <div class="post-side">
+                <span class="tag tag-todo">待写</span>
+              </div>
+            </article>
+          </div>
+
+          <p class="list-empty" id="list-empty" hidden>该板块下暂时还没有内容。</p>
+
+          <p class="preview-caption reveal">
+            筛选支持直达链接，例如 <code>notes.html?cat=trade</code> 会直接停在「交易」，
+            首页的五个板块入口用的就是这套链接。想看一天一条的短记录，去
+            <a class="inline-link" href="./logs.html">全部日志</a>。
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ 页脚 ============ -->
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div class="footer-brand">
+          <a class="wordmark" href="./index.html" aria-label="返回首页">
+            <span class="wordmark-mark" aria-hidden="true"></span>
+            <span class="wordmark-text">沈沉思</span>
+          </a>
+          <p>个人站。学习、交易、工作、项目、探索，五摊事，想到就记。</p>
+          <p class="footer-note">最后更新 2026-10-08</p>
+        </div>
+
+        <nav class="footer-links" aria-label="页脚板块导航">
+          <h3>板块</h3>
+          <a href="./notes.html?cat=study">学习</a>
+          <a href="./notes.html?cat=trade">交易</a>
+          <a href="./notes.html?cat=work">工作</a>
+          <a href="./notes.html?cat=project">项目</a>
+          <a href="./notes.html?cat=explore">探索</a>
+        </nav>
+
+        <div class="footer-links">
+          <h3>内容</h3>
+          <a href="./notes.html">全部记录</a>
+          <a href="./logs.html">全部日志</a>
+          <a href="./shares.html">全部分享</a>
+          <a href="./about.html">关于我</a>
+          <a href="./contact.html">写信给我</a>
+          <a href="#top">回到顶部</a>
+        </div>
+      </div>
+      <div class="shell footer-bottom">
+        <p>© 2026 沈沉思 · 个人站</p>
+        <p>站内文字、数字与文章为占位示例，替换后即正式版</p>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>沈沉思 · 个人站 — 学到的、在做的、看到的，都记在这儿</title>
+    <meta
+      name="description"
+      content="沈沉思的个人站：学习、交易、工作、项目、探索五个板块。近况面板看最近在推进什么，最近更新放长文，最新日志记当天的动作，最新分享放读过看过用过的东西。"
+    />
+    <meta name="theme-color" content="#060B1B" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="./favicon.ico" />
+    <link rel="apple-touch-icon" href="./favicon.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <!-- ============ 顶部导航 ============ -->
+    <header class="site-header" id="top">
+      <div class="shell header-inner">
+        <a class="wordmark" href="./index.html" aria-label="返回个人站首页">
+          <span class="wordmark-mark" aria-hidden="true"></span>
+          <span class="wordmark-text">沈沉思</span>
+        </a>
+
+        <nav class="primary-nav" id="primary-nav" aria-label="主导航">
+          <a href="#panel">近况</a>
+          <a href="#shelf">板块</a>
+          <a href="./notes.html">记录</a>
+          <a href="./logs.html">日志</a>
+          <a href="./shares.html">分享</a>
+          <a href="./about.html">关于</a>
+        </nav>
+
+        <div class="header-actions">
+          <a class="btn btn-accent btn-sm" href="./contact.html">写信给我</a>
+          <button
+            class="nav-toggle"
+            type="button"
+            id="nav-toggle"
+            aria-controls="primary-nav"
+            aria-expanded="false"
+          >
+            <span class="nav-toggle-bars" aria-hidden="true"></span>
+            <span class="sr-only">菜单</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ============ 首屏：这是谁、在做什么 ============ -->
+      <section class="hero" id="hero">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="shell hero-inner">
+          <div class="hero-id reveal">
+            <span class="portrait" aria-hidden="true">沉</span>
+            <span class="hero-id-text">
+              <strong>沈沉思</strong>
+              <span>一个人做量化交易系统 · 自己运维服务器和官网 · 记事人</span>
+            </span>
+          </div>
+
+          <p class="eyebrow reveal">个人站</p>
+          <h1 class="hero-title reveal">
+            学到的、在做的<br />
+            和<span class="accent-text">看到的</span>，都记下来
+          </h1>
+          <p class="hero-lede reveal">
+            这里没有产品，也没有广告。只有一个人每天推进的几件事：跑 OKX 永续的实盘策略、
+            把期货和股票的市场数据并进同一个应用、守着自己的服务器，再把每天想明白的一点东西写下来。
+            五个板块各管一摊，长的写记录，短的写日志，别人的东西写分享。
+          </p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-accent btn-lg" href="./notes.html">看看我写了什么</a>
+            <a class="btn btn-ghost btn-lg" href="./logs.html">今天我在做什么</a>
+          </div>
+
+          <dl class="hero-stats reveal">
+            <div>
+              <dt>写满正文的记录</dt>
+              <dd>
+                <span class="stat-value"
+                  ><span class="stat-num" data-to="6">6</span> 篇</span
+                >
+                <span class="stat-unit">另有 15 篇在排队</span>
+              </dd>
+            </div>
+            <div>
+              <dt>当天动作的短日志</dt>
+              <dd>
+                <span class="stat-value"
+                  ><span class="stat-num" data-to="25">25</span> 条</span
+                >
+                <span class="stat-unit">只记做了什么</span>
+              </dd>
+            </div>
+            <div>
+              <dt>同时在跑的市场</dt>
+              <dd>
+                <span class="stat-value"
+                  ><span class="stat-num" data-to="3">3</span> 个</span
+                >
+                <span class="stat-unit">永续 · 期货 · A 股</span>
+              </dd>
+            </div>
+          </dl>
+
+          <p class="draft-note reveal">
+            <strong>占位内容说明</strong>
+            页面结构、分类和排版已经就位。正文与标题按我实际在做的事拟好了，
+            数字、邮箱（hi@example.com）和部分条目仍是演示用占位，替换后即可上线。
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ 关键词滚动墙：正在推进的事 ============ -->
+      <div class="marquee">
+        <div class="marquee-track">
+          <div class="marquee-group">
+            <span class="marquee-item">双周期多空分离</span>
+            <span class="marquee-item">12 级市场状态</span>
+            <span class="marquee-item">ATR% 口径</span>
+            <span class="marquee-item">SAR 转向</span>
+            <span class="marquee-item">效率系数</span>
+            <span class="marquee-item">BOLL 限价</span>
+            <span class="marquee-item">OKX 永续实盘</span>
+            <span class="marquee-item">akshare 期货</span>
+            <span class="marquee-item">A 股监控</span>
+            <span class="marquee-item">调度器自愈</span>
+            <span class="marquee-item">glibc 碎片化</span>
+            <span class="marquee-item">HTTP/2 长连接</span>
+            <span class="marquee-item">全账户 500 张上限</span>
+            <span class="marquee-item">随笔复盘</span>
+          </div>
+          <div class="marquee-group" aria-hidden="true">
+            <span class="marquee-item">双周期多空分离</span>
+            <span class="marquee-item">12 级市场状态</span>
+            <span class="marquee-item">ATR% 口径</span>
+            <span class="marquee-item">SAR 转向</span>
+            <span class="marquee-item">效率系数</span>
+            <span class="marquee-item">BOLL 限价</span>
+            <span class="marquee-item">OKX 永续实盘</span>
+            <span class="marquee-item">akshare 期货</span>
+            <span class="marquee-item">A 股监控</span>
+            <span class="marquee-item">调度器自愈</span>
+            <span class="marquee-item">glibc 碎片化</span>
+            <span class="marquee-item">HTTP/2 长连接</span>
+            <span class="marquee-item">全账户 500 张上限</span>
+            <span class="marquee-item">随笔复盘</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ 五个板块入口 ============ -->
+      <section class="section" id="shelf">
+        <div class="shell">
+          <div class="section-head reveal">
+            <h2>五个板块，各管一摊</h2>
+            <p>
+              大致原则是：想明白的写进「学习」，跟钱和仓位有关的写进「交易」，
+              工程与运维的坑写进「工作」，一件件能拿出来说的东西写进「项目」，
+              日子和兴趣留给「探索」。归类不干净的时候，按写完最想给谁看决定。
+            </p>
+          </div>
+
+          <div class="shelf-grid reveal">
+            <a class="shelf" href="./notes.html?cat=study">
+              <p class="shelf-index">01 / 学习</p>
+              <h3>把想明白的东西写下来</h3>
+              <p>
+                市场状态怎么切、指标口径怎么统一、读到的书和文档。
+                写下来才算真的懂，顺便半年后能回去看自己当时错在哪。
+              </p>
+              <p class="shelf-more">进入学习</p>
+            </a>
+
+            <a class="shelf" href="./notes.html?cat=trade">
+              <p class="shelf-index">02 / 交易</p>
+              <h3>下单、仓位与风险</h3>
+              <p>
+                金额怎么换算成张数、双仓位为什么必须隔离、告警什么时候升级。
+                这一摊只写跟真金白银有关判断，不写行情预测。
+              </p>
+              <p class="shelf-more">进入交易</p>
+            </a>
+
+            <a class="shelf" href="./notes.html?cat=work">
+              <p class="shelf-index">03 / 工作</p>
+              <h3>踩过的坑和修好的 bug</h3>
+              <p>
+                连接复用、内存碎片、导入路径、编码报错、部署三连坑。
+                偏工程记录，写清楚当时的判断和它带来的代价。
+              </p>
+              <p class="shelf-more">进入工作</p>
+            </a>
+
+            <a class="shelf" href="./notes.html?cat=project">
+              <p class="shelf-index">04 / 项目</p>
+              <h3>正在长出来的东西</h3>
+              <p>
+                把三个市场并成一个应用、导航做成数据驱动、存储改成数据库权威源加文件兜底，
+                还有眼前这个站点本身。写架构怎么选的，也写哪些还没做完。
+              </p>
+              <p class="shelf-more">进入项目</p>
+            </a>
+
+            <a class="shelf" href="./notes.html?cat=explore">
+              <p class="shelf-index">05 / 探索</p>
+              <h3>日子、身体和看过的东西</h3>
+              <p>
+                夜跑、热量缺口、支出管理、日记，片子书和去过什么地方。
+                习惯要能被计数才坚持得下去，所以这里大多是带数字的短记录。
+              </p>
+              <p class="shelf-more">进入探索</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 近况：面板 + 最近更新 + 全部记录入口 ============ -->
+      <section class="section section-alt" id="panel">
+        <div class="shell">
+          <div class="section-head reveal">
+            <h2>近况</h2>
+            <p>
+              上面是这段时间要交给自己的一些事，右边是几件长周期事情的进度，
+              下面是最近的更新。每周整理一次，写不出来的那项就是没在做的事。
+            </p>
+          </div>
+
+          <div
+            class="app-window reveal"
+            role="img"
+            aria-label="近况面板：左栏为近期清单，右栏为长期事项进度"
+          >
+            <div class="app-chrome">
+              <div class="app-chrome-left">
+                <span class="app-dot" aria-hidden="true"></span>
+                <span class="app-dot" aria-hidden="true"></span>
+                <span class="app-dot" aria-hidden="true"></span>
+              </div>
+              <p class="app-title">近况面板 · 每周一整理</p>
+              <p class="app-chrome-right">最后更新 10/08</p>
+            </div>
+
+            <div class="app-body">
+              <!-- 近期清单 -->
+              <div class="app-col">
+                <div class="app-col-head">
+                  <h3>近期清单</h3>
+                  <p class="app-col-sub">6 件</p>
+                </div>
+
+                <ul class="task-list">
+                  <li class="task" data-status="doing">
+                    <span class="task-check" aria-hidden="true"></span>
+                    <div class="task-main">
+                      <p class="task-name">把全账户 500 张仓位上限接进下单拦截</p>
+                      <p class="task-meta">
+                        <span class="avatar" aria-hidden="true">交</span>
+                        <span>交易</span>
+                        <span class="sep">·</span>
+                        <span>进度 60%</span>
+                      </p>
+                    </div>
+                    <span class="tag tag-doing">在做</span>
+                  </li>
+                  <li class="task" data-status="doing">
+                    <span class="task-check" aria-hidden="true"></span>
+                    <div class="task-main">
+                      <p class="task-name">合并迁移收尾：模块边界与文档再核一遍</p>
+                      <p class="task-meta">
+                        <span class="avatar" aria-hidden="true">项</span>
+                        <span>项目</span>
+                        <span class="sep">·</span>
+                        <span>本周内</span>
+                      </p>
+                    </div>
+                    <span class="tag tag-doing">在做</span>
+                  </li>
+                  <li class="task" data-status="doing">
+                    <span class="task-check" aria-hidden="true"></span>
+                    <div class="task-main">
+                      <p class="task-name">K 线训练台的盲测模式做完验收</p>
+                      <p class="task-meta">
+                        <span class="avatar" aria-hidden="true">项</span>
+                        <span>项目</span>
+                        <span class="sep">·</span>
+                        <span>进度 75%</span>
+                      </p>
+                    </div>
+                    <span class="tag tag-doing">在做</span>
+                  </li>
+                  <li class="task" data-status="todo">
+                    <span class="task-check" aria-hidden="true"></span>
+                    <div class="task-main">
+                      <p class="task-name">给退市品种做一次清理，别让死数据继续参与扫描</p>
+                      <p class="task-meta">
+                        <span class="avatar" aria-hidden="true">工</span>
+                        <span>工作</span>
+                        <span class="sep">·</span>
+                        <span>10 月内</span>
+                      </p>
+                    </div>
+                    <span class="tag tag-todo">待办</span>
+                  </li>
+                  <li class="task" data-status="todo">
+                    <span class="task-check" aria-hidden="true"></span>
+                    <div class="task-main">
+                      <p class="task-name">给留言板接上后端，让网友留言真的能存下来</p>
+                      <p class="task-meta">
+                        <span class="avatar" aria-hidden="true">站</span>
+                        <span>探索</span>
+                        <span class="sep">·</span>
+                        <span>等想清楚要不要开放</span>
+                      </p>
+                    </div>
+                    <span class="tag tag-todo">待办</span>
+                  </li>
+                  <li class="task" data-status="blocked">
+                    <span class="task-check" aria-hidden="true"></span>
+                    <div class="task-main">
+                      <p class="task-name">把老域名上的三个页面搬过来</p>
+                      <p class="task-meta">
+                        <span class="avatar" aria-hidden="true">工</span>
+                        <span>工作</span>
+                        <span class="sep">·</span>
+                        <span>在等备案</span>
+                      </p>
+                    </div>
+                    <span class="tag tag-blocked">卡住</span>
+                  </li>
+                </ul>
+
+                <div class="ai-note">
+                  <p class="ai-label">给自己的一句话</p>
+                  <p>
+                    清单里「仓位上限接进拦截」这条已经拖了三周。
+                    它平时不会出事，出事的时候一次就够。
+                  </p>
+                </div>
+              </div>
+
+              <!-- 长期事项进度 -->
+              <div class="app-col">
+                <div class="app-col-head">
+                  <h3>长期事项</h3>
+                  <p class="app-col-sub">本年度 · 4 件</p>
+                </div>
+
+                <ul class="progress-list">
+                  <li>
+                    <div class="progress-head">
+                      <p class="progress-name">三市场并入主应用</p>
+                      <p class="progress-value">92%</p>
+                    </div>
+                    <div class="bar" role="presentation">
+                      <span class="bar-fill" style="--v: 92%"></span>
+                    </div>
+                    <p class="progress-foot">
+                      <span>Phase 0~7 已完</span>
+                      <span class="state state-ok">即将完成</span>
+                    </p>
+                  </li>
+                  <li>
+                    <div class="progress-head">
+                      <p class="progress-name">调度自愈与告警闭环</p>
+                      <p class="progress-value">75%</p>
+                    </div>
+                    <div class="bar" role="presentation">
+                      <span class="bar-fill" style="--v: 75%"></span>
+                    </div>
+                    <p class="progress-foot">
+                      <span>还差失败升级邮件</span>
+                      <span class="state state-ok">按计划</span>
+                    </p>
+                  </li>
+                  <li>
+                    <div class="progress-head">
+                      <p class="progress-name">策略与前端文档化</p>
+                      <p class="progress-value">42%</p>
+                    </div>
+                    <div class="bar" role="presentation">
+                      <span class="bar-fill bar-warn" style="--v: 42%"></span>
+                    </div>
+                    <p class="progress-foot">
+                      <span>还差 7 个模块</span>
+                      <span class="state state-risk">有风险</span>
+                    </p>
+                  </li>
+                  <li>
+                    <div class="progress-head">
+                      <p class="progress-name">这个站点从骨架到能用</p>
+                      <p class="progress-value">55%</p>
+                    </div>
+                    <div class="bar" role="presentation">
+                      <span class="bar-fill" style="--v: 55%"></span>
+                    </div>
+                    <p class="progress-foot">
+                      <span>内容替换进行中</span>
+                      <span class="state state-ok">按计划</span>
+                    </p>
+                  </li>
+                </ul>
+
+                <div class="week-card">
+                  <p class="ai-label">这周小结</p>
+                  <ul>
+                    <li>一天里连发七个阶段，把期货、股票、K 线训练并进了主应用。</li>
+                    <li>复扫明文密钥，抓到一处真的会进公开仓库的凭据，已收口。</li>
+                    <li>导航改成数据驱动之后才发现：默认配置和已保存配置不是一回事。</li>
+                  </ul>
+                  <p class="week-foot">整理于周一 07:30 · 只写事实</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 最近更新：长文列表 -->
+          <div class="panel-block">
+            <div class="panel-block-head reveal">
+              <div>
+                <h3>最近更新</h3>
+                <p>
+                  长文写在这里。不按期排，按写完的时间排；写得勤的时候一周两篇，
+                  忙的时候一个月一篇。
+                </p>
+              </div>
+              <a class="btn btn-line btn-sm" href="./notes.html">全部记录</a>
+            </div>
+
+            <div class="post-list reveal">
+              <article class="post-row">
+                <p class="post-date">2026-10-08</p>
+                <div class="post-main">
+                  <a class="post-title" href="./note-merge-migration.html">
+                    把三个市场并成一个应用，分七步走
+                  </a>
+                  <p class="post-excerpt">
+                    期货、股票、K 线训练各自都是一个独立项目，合进来最难的不是代码搬运动，
+                    而是同名模块、模板遮蔽和端口这些「谁覆盖谁」的问题。
+                  </p>
+                  <p class="post-tags">
+                    <span class="cat cat-project">项目</span>
+                    <span class="post-read">约 9 分钟</span>
+                  </p>
+                </div>
+                <div class="post-side">
+                  <a class="btn btn-ghost btn-sm" href="./note-merge-migration.html">读这篇</a>
+                </div>
+              </article>
+
+              <article class="post-row">
+                <p class="post-date">2026-10-07</p>
+                <div class="post-main">
+                  <a class="post-title" href="./note-market-regime.html">
+                    12 级市场状态是怎么定下来的
+                  </a>
+                  <p class="post-excerpt">
+                    把行情切成 12 种状态听起来很整齐，真正难的是相邻状态之间那条边界怎么判。
+                    这篇写我最后留下的条件和被砍掉的理由。
+                  </p>
+                  <p class="post-tags">
+                    <span class="cat cat-study">学习</span>
+                    <span class="post-read">约 8 分钟</span>
+                  </p>
+                </div>
+                <div class="post-side">
+                  <a class="btn btn-ghost btn-sm" href="./note-market-regime.html">读这篇</a>
+                </div>
+              </article>
+
+              <article class="post-row">
+                <p class="post-date">2026-10-06</p>
+                <div class="post-main">
+                  <a class="post-title" href="./note-trade-sizing.html">
+                    一笔下单要换算多少张：金额、杠杆与 USDT
+                  </a>
+                  <p class="post-excerpt">
+                    「开 200 USDT」到「下几张合约」之间只有一步乘法，但我把杠杆放错了边，
+                    直到仓位比预期大一截才发现。顺手把单位口径钉死。
+                  </p>
+                  <p class="post-tags">
+                    <span class="cat cat-trade">交易</span>
+                    <span class="post-read">约 6 分钟</span>
+                  </p>
+                </div>
+                <div class="post-side">
+                  <a class="btn btn-ghost btn-sm" href="./note-trade-sizing.html">读这篇</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 最新日志 ============ -->
+      <section class="section" id="logs">
+        <div class="shell">
+          <div class="section-head reveal">
+            <h2>最新日志</h2>
+            <p>
+              一天一条或几条，只写「今天做了什么、卡在哪」，不展开成文章。
+              写不出日志的那几天，通常说明我在做不产生进展的事。
+            </p>
+          </div>
+
+          <div class="list-toolbar reveal">
+            <p class="list-count">最近 8 条 · 共 25 条</p>
+            <a class="btn btn-line btn-sm" href="./logs.html">全部日志</a>
+          </div>
+
+          <div class="feed reveal">
+            <article class="feed-row">
+              <p class="feed-date">10-08</p>
+              <div class="feed-body">
+                <p class="feed-title">合并迁移 Phase 5 到 Phase 7：依赖清单、凭据收口、文档归档</p>
+                <p class="feed-note">
+                  一天推完三个阶段。复扫明文密钥时抓到一处会随仓库公开的凭据，先删干净再补核对脚本。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-project">项目</span>
+              </div>
+            </article>
+
+            <article class="feed-row">
+              <p class="feed-date">10-08</p>
+              <div class="feed-body">
+                <p class="feed-title">单实例守护与模板遮蔽修完</p>
+                <p class="feed-note">
+                  同名模板互相覆盖的问题在合并后集中爆发，路径优先级排完再逐页复验才干净。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-work">工作</span>
+              </div>
+            </article>
+
+            <article class="feed-row">
+              <p class="feed-date">10-06</p>
+              <div class="feed-body">
+                <p class="feed-title">重推了一遍金额下单的张数换算</p>
+                <p class="feed-note">
+                  杠杆是放大因子不是除数，单位统一成 USDT 之后前后端才算对上。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-trade">交易</span>
+              </div>
+            </article>
+
+            <article class="feed-row">
+              <p class="feed-date">10-05</p>
+              <div class="feed-body">
+                <p class="feed-title">K 线批量拉取不再成批失败</p>
+                <p class="feed-note">
+                  显式超时 + 进程内复用行情实例，只在判定为连接级错误时重建一次。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-work">工作</span>
+              </div>
+            </article>
+
+            <article class="feed-row">
+              <p class="feed-date">10-04</p>
+              <div class="feed-body">
+                <p class="feed-title">砍掉两个市场状态判据</p>
+                <p class="feed-note">
+                  相邻状态重叠的部分用一句话补不回来，宁可少判也别错判。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-study">学习</span>
+              </div>
+            </article>
+
+            <article class="feed-row">
+              <p class="feed-date">10-02</p>
+              <div class="feed-body">
+                <p class="feed-title">夜跑第 21 天，改成只设最低门槛</p>
+                <p class="feed-note">
+                  不谈配速不谈距离，出门跑十分钟也算；断的那天写成记录，不算失败。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-explore">探索</span>
+              </div>
+            </article>
+
+            <article class="feed-row">
+              <p class="feed-date">09-21</p>
+              <div class="feed-body">
+                <p class="feed-title">运维中心、盘感模块与任务计划一起更新</p>
+                <p class="feed-note">
+                  三个模块攒到同一天提交，看着爽，回滚的时候一点都不爽。下次分开。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-project">项目</span>
+              </div>
+            </article>
+
+            <article class="feed-row">
+              <p class="feed-date">09-10</p>
+              <div class="feed-body">
+                <p class="feed-title">Web 访问闸门上线，补齐只读接口的限频漏网</p>
+                <p class="feed-note">
+                  缺配置时的默认方向定成「关闭远程」而不是「无防护」，这个选择要写进文档。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-work">工作</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 最新分享 ============ -->
+      <section class="section section-alt" id="shares">
+        <div class="shell">
+          <div class="section-head reveal">
+            <h2>最新分享</h2>
+            <p>
+              读过、看过、用过的东西，值得单独记一笔的才进来。
+              每条都写「它解决了我的什么问题」，写不出这句就不进这个列表。
+            </p>
+          </div>
+
+          <div class="list-toolbar reveal">
+            <p class="list-count">最近 6 条 · 共 14 条</p>
+            <a class="btn btn-line btn-sm" href="./shares.html">全部分享</a>
+          </div>
+
+          <div class="share-grid reveal">
+            <article class="share">
+              <p class="share-kind">文档</p>
+              <h3>OKX 交易操作能力清单</h3>
+              <p>
+                把下单、策略单、网格、杠杆、平仓这几类接口能做什么、参数踩在哪里列成一张表，
+                省掉我每次翻文档的时间。
+              </p>
+              <p class="share-src">
+                <span>我自己整理</span>
+                <span class="accent-text">2026-10</span>
+              </p>
+            </article>
+
+            <article class="share">
+              <p class="share-kind">方案</p>
+              <h3>futureStockTrade 合并迁移方案与清单</h3>
+              <p>
+                七个阶段，每阶段都能独立验收、独立回滚。
+                写清单的时候以为多余，出事的时候是唯一能救我的东西。
+              </p>
+              <p class="share-src">
+                <span>我自己整理</span>
+                <span class="accent-text">2026-10</span>
+              </p>
+            </article>
+
+            <article class="share">
+              <p class="share-kind">书</p>
+              <h3>《漫步华尔街》</h3>
+              <p>
+                前面讲技术分析与基本面分析互相打脸的那几章，跟我自己跑策略得到的结论方向一致：
+                市场大部分时间是有效的，剩下的部分你未必抓得住。
+              </p>
+              <p class="share-src">
+                <span>读到第 12 章</span>
+                <span class="accent-text">进行中</span>
+              </p>
+            </article>
+
+            <article class="share">
+              <p class="share-kind">接口文档</p>
+              <h3>OKV5 行情与交易接口文档</h3>
+              <p>
+                真正有用的不是接口列表，是每个接口后面那行频率限制。
+                批量任务的设计余量全从这里来。
+              </p>
+              <p class="share-src">
+                <span>交易所官方文档</span>
+                <span class="accent-text">长期在翻</span>
+              </p>
+            </article>
+
+            <article class="share">
+              <p class="share-kind">片</p>
+              <h3>《大空头》第二遍</h3>
+              <p>
+                第二遍注意的不是那几个做空的人，而是他们从「看对了」到「赚到了」
+                中间那段被质疑的日子有多长。
+              </p>
+              <p class="share-src">
+                <span>看到第三次听证会那场</span>
+                <span class="accent-text">2026-10</span>
+              </p>
+            </article>
+
+            <article class="share">
+              <p class="share-kind">播客</p>
+              <h3>一期讲工程实践的播客</h3>
+              <p>
+                「能跑的丑代码胜过没跑的漂亮代码」，但下一句才是重点：
+                丑代码的债要用文档来还，不然下次是你自己踩。
+              </p>
+              <p class="share-src">
+                <span>通勤路上 · 已听 6 期</span>
+                <span class="accent-text">持续</span>
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 结尾行动区 ============ -->
+      <section class="closing">
+        <div class="shell closing-inner reveal">
+          <h2>想聊点什么，写信或者留一句</h2>
+          <p>
+            交易、运维、或者我写错的地方，都欢迎指出来。看到会回，
+            只是可能慢一点——回信的时间一般排在实盘告警之后。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-accent btn-lg" href="./contact.html">写信给我</a>
+            <a class="btn btn-ghost btn-lg" href="./about.html">先看看我是谁</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ 页脚 ============ -->
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div class="footer-brand">
+          <a class="wordmark" href="./index.html" aria-label="返回首页">
+            <span class="wordmark-mark" aria-hidden="true"></span>
+            <span class="wordmark-text">沈沉思</span>
+          </a>
+          <p>个人站。学习、交易、工作、项目、探索，五摊事，想到就记。</p>
+          <p class="footer-note">最后更新 2026-10-08</p>
+        </div>
+
+        <nav class="footer-links" aria-label="页脚板块导航">
+          <h3>板块</h3>
+          <a href="./notes.html?cat=study">学习</a>
+          <a href="./notes.html?cat=trade">交易</a>
+          <a href="./notes.html?cat=work">工作</a>
+          <a href="./notes.html?cat=project">项目</a>
+          <a href="./notes.html?cat=explore">探索</a>
+        </nav>
+
+        <div class="footer-links">
+          <h3>内容</h3>
+          <a href="./notes.html">全部记录</a>
+          <a href="./logs.html">全部日志</a>
+          <a href="./shares.html">全部分享</a>
+          <a href="./about.html">关于我</a>
+          <a href="./contact.html">写信给我</a>
+          <a href="#top">回到顶部</a>
+        </div>
+      </div>
+      <div class="shell footer-bottom">
+        <p>© 2026 沈沉思 · 个人站</p>
+        <p>站内文字、数字与文章为占位示例，替换后即正式版</p>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

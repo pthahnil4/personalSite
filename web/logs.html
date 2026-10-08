@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>全部日志 · 沈沉思个人站</title>
+    <meta
+      name="description"
+      content="沈沉思的短日志：一天一条或几条，只记今天做了什么、卡在哪。可按学习、交易、工作、项目、探索五个板块筛选。"
+    />
+    <meta name="theme-color" content="#060B1B" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="./favicon.ico" />
+    <link rel="apple-touch-icon" href="./favicon.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <!-- ============ 顶部导航 ============ -->
+    <header class="site-header" id="top">
+      <div class="shell header-inner">
+        <a class="wordmark" href="./index.html" aria-label="返回个人站首页">
+          <span class="wordmark-mark" aria-hidden="true"></span>
+          <span class="wordmark-text">沈沉思</span>
+        </a>
+
+        <nav class="primary-nav" id="primary-nav" aria-label="主导航">
+          <a href="./index.html#panel">近况</a>
+          <a href="./index.html#shelf">板块</a>
+          <a href="./notes.html">记录</a>
+          <a href="./logs.html" class="is-current">日志</a>
+          <a href="./shares.html">分享</a>
+          <a href="./about.html">关于</a>
+        </nav>
+
+        <div class="header-actions">
+          <a class="btn btn-accent btn-sm" href="./contact.html">写信给我</a>
+          <button
+            class="nav-toggle"
+            type="button"
+            id="nav-toggle"
+            aria-controls="primary-nav"
+            aria-expanded="false"
+          >
+            <span class="nav-toggle-bars" aria-hidden="true"></span>
+            <span class="sr-only">菜单</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ============ 内页标题 ============ -->
+      <section class="page-head">
+        <div class="shell">
+          <p class="crumbs">
+            <a href="./index.html">首页</a>
+            <span class="sep">/</span>
+            <span>全部日志</span>
+          </p>
+          <h1>全部日志</h1>
+          <p class="page-lede">
+            短记录，一天一到三条，只写「做了什么、卡在哪、下一步」。
+            长文章进<a class="inline-link" href="./notes.html">记录</a>，
+            读完看过的东西进<a class="inline-link" href="./shares.html">分享</a>。
+            写不出日志的那几天，通常说明我在做不产生进展的事。
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ 日志流 + 板块筛选 ============ -->
+      <section class="section">
+        <div class="shell">
+          <div class="list-toolbar reveal">
+            <div class="filters" role="tablist" aria-label="按板块筛选日志">
+              <button
+                class="filter is-active"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                data-cat="all"
+              >
+                全部 <span class="count">25</span>
+              </button>
+              <button
+                class="filter"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-cat="study"
+              >
+                学习 <span class="count">4</span>
+              </button>
+              <button
+                class="filter"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-cat="trade"
+              >
+                交易 <span class="count">4</span>
+              </button>
+              <button
+                class="filter"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-cat="work"
+              >
+                工作 <span class="count">8</span>
+              </button>
+              <button
+                class="filter"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-cat="project"
+              >
+                项目 <span class="count">5</span>
+              </button>
+              <button
+                class="filter"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-cat="explore"
+              >
+                探索 <span class="count">4</span>
+              </button>
+            </div>
+            <p class="list-count" id="list-count">全部 25 条</p>
+          </div>
+
+          <p class="draft-note reveal">
+            <strong>占位内容说明</strong>
+            日期与条目按我实际的推进节奏拟好，仍属演示数据。
+            加一条日志 = 在下面的列表最前面插一行 <code>feed-row</code>。
+          </p>
+
+          <div class="feed">
+            <article class="feed-row" data-cat="project">
+              <p class="feed-date">2026-10-08</p>
+              <div class="feed-body">
+                <p class="feed-title">合并迁移 Phase 7：文档归档与模块边界收口</p>
+                <p class="feed-note">
+                  把方案、清单、实测记录分门别类落回文档。这一步最容易被跳过，
+                  也最容易在三个月后变成「这段代码谁写的」。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-project">项目</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="work">
+              <p class="feed-date">2026-10-08</p>
+              <div class="feed-body">
+                <p class="feed-title">单实例守护 + 模板遮蔽修完</p>
+                <p class="feed-note">
+                  两个进程抢同一端口时后起的会静默失败，页面却还显示上一版的模板。
+                  路径优先级重新排完，再逐页复验才干净。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-work">工作</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="project">
+              <p class="feed-date">2026-10-08</p>
+              <div class="feed-body">
+                <p class="feed-title">Phase 5：依赖清单与凭据收口</p>
+                <p class="feed-note">
+                  复扫明文密钥抓到一处真的会随仓库公开的凭据。删干净之后加了一个核对脚本，
+                  靠记性做这件事迟早出事。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-project">项目</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="project">
+              <p class="feed-date">2026-10-08</p>
+              <div class="feed-body">
+                <p class="feed-title">Phase 4 验收：K 线训练模块并入主应用</p>
+                <p class="feed-note">
+                  这阶段花的时间最多，因为账号体系和对战榜单要跟主应用的用户概念对齐。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-project">项目</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="study">
+              <p class="feed-date">2026-10-07</p>
+              <div class="feed-body">
+                <p class="feed-title">12 级市场状态定稿</p>
+                <p class="feed-note">
+                  相邻状态重叠的部分用一句话补不回来，砍掉两个判据之后判定反而更稳。
+                  写成了一篇
+                  <a class="inline-link" href="./note-market-regime.html">记录</a>。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-study">学习</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="work">
+              <p class="feed-date">2026-10-07</p>
+              <div class="feed-body">
+                <p class="feed-title">把只读接口的限频漏网补齐</p>
+                <p class="feed-note">
+                  之前只盯写操作，忘了查询同样能被人循环打。闸门默认方向定成「缺配置就关闭远程」。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-work">工作</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="trade">
+              <p class="feed-date">2026-10-06</p>
+              <div class="feed-body">
+                <p class="feed-title">重推金额下单的张数换算</p>
+                <p class="feed-note">
+                  杠杆是放大因子不是除数，放错边的时候仓位直接大一截。
+                  详细推导在
+                  <a class="inline-link" href="./note-trade-sizing.html">这篇</a>。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-trade">交易</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="study">
+              <p class="feed-date">2026-10-06</p>
+              <div class="feed-body">
+                <p class="feed-title">回看 BOLL 限价策略的双周期取数</p>
+                <p class="feed-note">
+                  同一份逻辑在两个周期上口径不一致，剔除条件就会抖。指标命名规范又改了一版。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-study">学习</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="work">
+              <p class="feed-date">2026-10-05</p>
+              <div class="feed-body">
+                <p class="feed-title">K 线批量拉取不再成批失败</p>
+                <p class="feed-note">
+                  显式超时 + 进程内复用行情实例，只在识别为连接级错误时重建一次。
+                  之前一天浪费在三天的错方向上。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-work">工作</span>
+                <a class="btn-tiny" href="./note-kline-http2.html">展开成文</a>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="trade">
+              <p class="feed-date">2026-10-05</p>
+              <div class="feed-body">
+                <p class="feed-title">账户级杠杆统一设成 10 倍</p>
+                <p class="feed-note">
+                  合约级和账户级两套杠杆混着配，实测才发现后者优先。写进配置说明里。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-trade">交易</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="study">
+              <p class="feed-date">2026-10-04</p>
+              <div class="feed-body">
+                <p class="feed-title">砍掉两个市场状态判据</p>
+                <p class="feed-note">
+                  它们与已有条件高度相关，等于同一条规则数了两遍。少即是稳。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-study">学习</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="work">
+              <p class="feed-date">2026-10-04</p>
+              <div class="feed-body">
+                <p class="feed-title">数据目录梳理：外置路径自动识别</p>
+                <p class="feed-note">
+                  部署到服务器时不想再手动设环境变量，让程序自己找数据根目录。
+                  硬编码路径这件事一旦留下就会传染。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-work">工作</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="project">
+              <p class="feed-date">2026-10-03</p>
+              <div class="feed-body">
+                <p class="feed-title">运维中心全模块冒烟</p>
+                <p class="feed-note">
+                  把每个页面的入口点一遍，脚本按阶段拆成五份。跑完才敢继续合并下一个模块。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-project">项目</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="explore">
+              <p class="feed-date">2026-10-03</p>
+              <div class="feed-body">
+                <p class="feed-title">夜跑断了一次</p>
+                <p class="feed-note">
+                  熬到十一点才睡，第二天起不来。按新规矩把它写成一条记录，不算失败，明天继续计数。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-explore">探索</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="explore">
+              <p class="feed-date">2026-10-02</p>
+              <div class="feed-body">
+                <p class="feed-title">夜跑第 21 天，顺手写成一篇</p>
+                <p class="feed-note">
+                  只设最低门槛这件事真的能坚持。全文在
+                  <a class="inline-link" href="./note-night-run.html">这里</a>。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-explore">探索</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="work">
+              <p class="feed-date">2026-10-02</p>
+              <div class="feed-body">
+                <p class="feed-title">定时任务日志拆成两条流</p>
+                <p class="feed-note">
+                  任务流和操作流各写各的，用 run_id 关联。调试交易异常时终于能按次追。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-work">工作</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="trade">
+              <p class="feed-date">2026-10-01</p>
+              <div class="feed-body">
+                <p class="feed-title">冷却期的重复提醒治理</p>
+                <p class="feed-note">
+                  同一币种同一方向的提醒在冷却期里刷屏，去重加上初始化时机修正才压住。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-trade">交易</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="work">
+              <p class="feed-date">2026-09-29</p>
+              <div class="feed-body">
+                <p class="feed-title">终端打中文就报 UnicodeEncodeError</p>
+                <p class="feed-note">
+                  emoji 和中文在某些 Windows 终端上是两种死法。服务启动参数里补了编码与线程模式。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-work">工作</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="explore">
+              <p class="feed-date">2026-09-28</p>
+              <div class="feed-body">
+                <p class="feed-title">今年第四部片子看完</p>
+                <p class="feed-note">
+                  四部凑在一起像同一个问题的四种答案，整理成
+                  <a class="inline-link" href="./note-four-films.html">一篇短文</a>。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-explore">探索</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="study">
+              <p class="feed-date">2026-09-26</p>
+              <div class="feed-body">
+                <p class="feed-title">重读效率系数的定义</p>
+                <p class="feed-note">
+                  净位移除以路径总长。窗口取 10 根还是 20 根，得出的结论完全不同，得固定下来。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-study">学习</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="work">
+              <p class="feed-date">2026-09-24</p>
+              <div class="feed-body">
+                <p class="feed-title">多目录同名模块导入冲突定位</p>
+                <p class="feed-note">
+                  导进来的不是我以为的那个文件，表现为密钥报错。搜索路径顺序写进项目文档。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-work">工作</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="project">
+              <p class="feed-date">2026-09-21</p>
+              <div class="feed-body">
+                <p class="feed-title">运维中心、盘感模块、任务计划一起提交</p>
+                <p class="feed-note">
+                  看着省事，真要回滚的时候一点都不省事。下次按模块拆提交。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-project">项目</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="trade">
+              <p class="feed-date">2026-09-18</p>
+              <div class="feed-body">
+                <p class="feed-title">把手动平仓检测挪到对账之前</p>
+                <p class="feed-note">
+                  顺序错一次，账面上就出现一笔凭空消失的盈亏。步骤顺序在这类系统里不是风格问题。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-trade">交易</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="explore">
+              <p class="feed-date">2026-09-14</p>
+              <div class="feed-body">
+                <p class="feed-title">热量表补了数量字段</p>
+                <p class="feed-note">
+                  原来只记每百克热量，吃多少全凭估。改完之后第一次知道自己在超量进食。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-explore">探索</span>
+              </div>
+            </article>
+
+            <article class="feed-row" data-cat="work">
+              <p class="feed-date">2026-09-10</p>
+              <div class="feed-body">
+                <p class="feed-title">Web 访问闸门上线</p>
+                <p class="feed-note">
+                  给必须保持远程可用的老系统加鉴权，缺配置时的默认值方向要选对：
+                  关闭远程，而不是无防护。
+                </p>
+              </div>
+              <div class="feed-side">
+                <span class="cat cat-work">工作</span>
+              </div>
+            </article>
+          </div>
+
+          <p class="feed-empty" id="list-empty" hidden>该板块下还没有日志。</p>
+
+          <p class="preview-caption reveal">
+            日志支持板块直达链接，例如 <code>logs.html?cat=work</code> 只看在处理的工程问题。
+            想读成体系的长文去
+            <a class="inline-link" href="./notes.html">全部记录</a>。
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ 页脚 ============ -->
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div class="footer-brand">
+          <a class="wordmark" href="./index.html" aria-label="返回首页">
+            <span class="wordmark-mark" aria-hidden="true"></span>
+            <span class="wordmark-text">沈沉思</span>
+          </a>
+          <p>个人站。学习、交易、工作、项目、探索，五摊事，想到就记。</p>
+          <p class="footer-note">最后更新 2026-10-08</p>
+        </div>
+
+        <nav class="footer-links" aria-label="页脚板块导航">
+          <h3>板块</h3>
+          <a href="./notes.html?cat=study">学习</a>
+          <a href="./notes.html?cat=trade">交易</a>
+          <a href="./notes.html?cat=work">工作</a>
+          <a href="./notes.html?cat=project">项目</a>
+          <a href="./notes.html?cat=explore">探索</a>
+        </nav>
+
+        <div class="footer-links">
+          <h3>内容</h3>
+          <a href="./notes.html">全部记录</a>
+          <a href="./logs.html">全部日志</a>
+          <a href="./shares.html">全部分享</a>
+          <a href="./about.html">关于我</a>
+          <a href="./contact.html">写信给我</a>
+          <a href="#top">回到顶部</a>
+        </div>
+      </div>
+      <div class="shell footer-bottom">
+        <p>© 2026 沈沉思 · 个人站</p>
+        <p>站内文字、数字与文章为占位示例，替换后即正式版</p>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
